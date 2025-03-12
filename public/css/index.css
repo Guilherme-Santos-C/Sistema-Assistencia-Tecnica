@@ -1,0 +1,26 @@
+main {
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    color: var(--color-black);
+     font-size: 8rem;
+     line-height: 108%;
+}
+
+span {
+    color: var(--color-primary);
+}
+
+.button-faca-login {
+    width: 38.8rem;
+    height: 5rem;
+    font-size: 2.8rem;
+    gap: 1.5rem;
+}
+
+.button-faca-login img {
+    width: 36px;
+    height: 36px;
+}

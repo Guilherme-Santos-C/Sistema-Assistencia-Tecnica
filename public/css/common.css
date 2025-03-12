@@ -1,0 +1,33 @@
+:root {
+    --color-primary: #8800FF;
+    --color-secondary: #C67DFF; 
+    --color-black: #11002C;
+    --color-white: #F7F4FF;
+}
+
+* { 
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+button{
+    height: 5rem;
+    border-radius: 2rem;
+    padding: 0.6rem;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
