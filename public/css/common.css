@@ -9,6 +9,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Blauer nue";
 }
 
 html {
@@ -30,4 +31,8 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+a {
+    color: var(--color-secondary);
 }
