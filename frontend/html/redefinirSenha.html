@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refefinir senha</title>
+    <link rel="stylesheet" href="../css/redefinir.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="shortcut icon" type="image/jpg" href="../images/e_grande_icone.png"/>
+</head>
+
+<body>
+    <main>
+        <div class="main-content-left-side">
+            <div class="content-up-side">
+                <h1>Olá seja,<br> <span>bem-vindo</span><br> à Easy Tech!</h1>
+                <button class="button-faca-login">Redefina sua senha <img src="../images/seta_icone.png"alt="icone de seta"></button>
+            </div>
+            <div class="content-down-side">
+                <img src="../images/e_grande_icone.png" alt="Icone muito grande da letra e"
+                    class="content-down-side-image">
+            </div>
+        </div>
+        <div class="main-content-right-side">
+            <div class="card">
+                <h4>Redefina sua senha</h4>
+                <div class="container-input">
+                    <label for="input-cpf">CPF</label>
+                    <input type="text" autocomplete="off" placeholder="Digite seu email" name="input-cpf" id="input-cpf" required>
+                </div>
+                <div class="container-input">
+                    <label for="input-senha">Senha</label>
+                    <div id="div_senha_input">
+                        <input type="password" placeholder="Digite sua senha" name="input-senha"
+                            id="input-senha" required>
+                        <img src="../images/senhaVisivel.svg" alt="Icone de olho" id="senha_visivel_img">
+                    </div>
+                </div>
+                <div class="container-input">
+                    <label for="input-confirmasenha">Confirmar senha</label>
+                    <input type="password" autocomplete="off" placeholder="Confirme sua senha" name="input-confirmasenha" id="input-confirma-senha" required>
+                </div>
+                <div class="container-input">
+                    <label for="input-senhaadmin">Senha do administrador</label>
+                    <input type="password" autocomplete="off" placeholder="Senha do administrador para autorização" name="input-senhaadmin" id="input-senha-admin" required>
+                </div>
+                <button id="redefinir">Redefinir</button>
+            </div>
+        </div>
+    </main>
+    <img src="../images/loading.svg" style="width: 30%;" alt="Animação que representa o carregamento da página" id="icone_loading">
+    <script type="module" src="../src/redefinirSenha.js"></script>
+</body>
+</html>

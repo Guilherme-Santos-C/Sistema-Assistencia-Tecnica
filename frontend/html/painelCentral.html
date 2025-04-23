@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refefinir senha</title>
+    <link rel="stylesheet" href="../css/painelCentral.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="shortcut icon" type="image/jpg" href="../images/e_grande_icone.png"/>
+</head>
+<body>
+    <main>
+        <div class="left-side-bar">
+            <img src="../images/Logo.svg" alt="logo icone" class="logo">
+            <div class="left-side-bar-linha"></div>
+            <div class="container-buttons-left-bar">
+                <button class="buttons-left-bar"><img src="../images/Clientes.svg" alt="icone de clientes"></button>
+                <button class="buttons-left-bar"><img src="../images/Ordem de serviço.svg" alt="icone de checklist"></button>
+                <button class="buttons-left-bar"><img src="../images/Pesquisa.svg" alt="icone de pesquisa"></button>
+            </div>
+            <div class="left-side-bar-linha"></div>
+            <img src="../images/Logout.svg" alt="icone logout" id="icone-logout">
+        </div>
+        <div class="main-content">
+            <div class="up-side-bar">
+                <p>Painel central</p>
+                <p id="nome_usuario">Usuário</p>
+            </div>
+            <div class="down-side-content">
+                <div class="left-side-content">
+                    <h1>Edite, adicione<br> e gerencie seus<br> clientes em <span>um<br>só lugar!</span></h1>
+                    <div class="container-buttons">
+                        <button><img src="../images/clientes_branco.svg" alt="icone de clientes">Clientes</button>
+                        <button><img src="../images/ordem_de_serviço_branca.svg" alt="icone de checklist">Ordens de serviço</button>
+                        <button><img src="../images/pesquisa_branca.png" alt="icone de pesquisa">Pesquisa Geral</button>
+                    </div>
+                </div>
+                <div class="right-side-content">
+                    <img src="../images/ilustração_homem.svg" alt="ilustração de um homem com uma planilha">
+                </div>
+            </div>
+        </div>
+    </main>
+    <img src="../images/loading.svg" style="width: 30%;" alt="Animação que representa o carregamento da página" id="icone_loading">
+    <script type="module" src="../src/painelCentral.js"></script>
+</body>
+</html>

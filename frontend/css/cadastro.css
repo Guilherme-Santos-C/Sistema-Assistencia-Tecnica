@@ -1,0 +1,165 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-white);
+}
+
+::-webkit-input-placeholder {
+    color: rgba(17, 0, 44, 25%);
+}
+
+main {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-content-left-side {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10vw;
+    padding-top: 13vh;
+}
+
+.content-up-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+.content-down-side-image {
+    position: absolute;
+    bottom: 0;
+    width: 18%;
+}
+
+
+.main-content-right-side {
+    width: 50vw;
+    height: 100vh;
+    background-color: #EAE5FF;
+    border-radius: 6rem 0 0 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro-card {
+    background-color: var(--color-white);
+    height: 95%;
+    width: 55%;
+    border-radius: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    background-color: #F7F4FF;
+}
+
+.cadastro-card h4 {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    font-size: 1.8rem;
+    color: var(--color-black);
+    position: relative;
+    top: -1rem;
+}
+
+.cadastro-card button {
+    width: 90%;
+    font-size: 2.8rem;
+    height: 5rem;
+    position: relative;
+    top: 1.2rem;
+    cursor: pointer;
+}
+
+.container-input-login {
+    display: flex;
+    gap: 0.4rem;
+    flex-direction: column;
+    width: 90%;
+}
+
+.container-input-login label {
+    font-size: 1.7rem;
+}
+
+.container-input-login input:focus {
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid var(--color-secondary);
+    font-size: 1.7rem;
+    background-color: #F7F4FF;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.container-input-login input {
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid #EAE5FF;
+    font-size: 1.7rem;
+    background-color: #EAE5FF;
+    transition: 1s all;
+    height: 60%;
+}
+
+.container-input-login div {
+    width: 100%;
+    display: flex;
+    padding-right: 1rem;
+    background-color: #EAE5FF;
+    border-radius: 1rem;
+    height: 60%;
+}
+
+.container-input-login #senha {
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid #EAE5FF;
+    font-size: 1.7rem;
+    background-color: #EAE5FF;
+    transition: 1s all;
+    height: 100%;
+    width: 90%;
+}
+
+.container-input-login img {
+    width: 10%;
+    background-color: #EAE5FF;
+}
+
+h1 {
+    color: var(--color-black);
+    font-size: 8rem;
+    line-height: 108%;
+    font-weight: 400;
+}
+
+span {
+    color: var(--color-primary);
+}
+
+.button-faca-login {
+    width: 43rem;
+    height: 6.2rem;
+    font-size: 3rem;
+    gap: 2rem;
+    font-weight: 400;
+}
+
+.button-faca-login img {
+    width: 36px;
+    height: 36px;
+}

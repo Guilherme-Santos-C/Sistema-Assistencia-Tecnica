@@ -1,0 +1,33 @@
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+
+const verificaTokenUser = (req, res, next) => {
+    const secret = process.env.JWT_SECRET
+    const token = req.header("Authorization")
+    if(!token) return res.status(401).json({mensagem: "Acesso negado, faça login novamente"})
+    try {
+        const decodificado = jwt.verify(token, secret)
+        if(decodificado.role !== "usuário") return res.status(403).json({mensagem: "Acesso negado, faça login novamente"})
+        next()
+    } catch (error) {
+        console.error(error)
+        res.status(401).json({mensagem: "Acesso negado, faça login novamente"})
+    }    
+}
+
+const verificaTokenAdmin = (req, res, next) => {
+    const secret = process.env.JWT_SECRET
+    const token = req.header("Authorization")
+    if(!token) return res.status(401).json({mensagem: "Acesso negado, faça login novamente"})
+    try {
+        token = token.split(" ")[1]
+        const decodificado = jwt.verify(token, secret)
+        if(decodificado.role !== "admin") return res.status(403).json({mensagem: "Acesso negado, faça login novamente"})
+        next()
+    } catch (error) {
+        console.error(error)
+        res.status(401).json({mensagem: "Acesso negado, faça login novamente"})
+    }    
+}
+
+module.exports = {verificaTokenAdmin, verificaTokenUser}
