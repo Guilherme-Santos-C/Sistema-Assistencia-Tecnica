@@ -40,7 +40,8 @@ main {
     min-width: 4.3rem;
     border-radius: 1rem;
     border: none;
-    background-color: #E4DEFF;
+    background-color: var(--color-white);
+    cursor: pointer;
 }
 
 .container-buttons-left-bar .buttons-left-bar img {
@@ -112,6 +113,7 @@ main {
     border-radius: 1rem;
     padding: 2rem 2rem 2rem 1rem;
     font-size: 1.8rem;
+    cursor: pointer;
 }
 
 .left-side-content .container-buttons button img {

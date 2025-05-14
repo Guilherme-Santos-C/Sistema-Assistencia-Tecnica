@@ -4,7 +4,7 @@ import mascara_cpf from "./mascara_cpf.js"
 import tokens from "./tokens.js"
 
 if(tokens.logado()){
-    window.location.href = "http://localhost:5500/frontend/html/painelCentral.html";
+    window.location.href = "http://localhost:3030/html/painelCentral.html";
 }
 
 const input_email = document.querySelector("#email")
@@ -30,7 +30,7 @@ const cadastrar_usuario = async () => {
         return mostrarAlerta("As senhas não coencidem")
     }
         tela_carregamento.exibir()
-    let resposta = await fetch("http://localhost:3000/api/usuarios", {
+    let resposta = await fetch("http://localhost:3030/api/usuarios", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -46,6 +46,9 @@ const cadastrar_usuario = async () => {
     if(resposta.ok){
         resposta = await resposta.json()
         tela_carregamento.fechar()
+        inputs.forEach((e) => {
+            e.value = ""
+        })
         mostrarAlerta(resposta.mensagem)
     }else{
         resposta = await resposta.json()

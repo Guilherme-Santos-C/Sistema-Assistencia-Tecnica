@@ -3,7 +3,7 @@ import tela_carregamento from "./tela_carregamento.js"
 import tokens from "./tokens.js"
 
 if(tokens.logado()){
-    window.location.href = "http://localhost:5500/frontend/html/painelCentral.html";
+    window.location.replace("http://localhost:3030/html/painelCentral.html")
 }
 
 const input_email = document.querySelector("#input-login-email")
@@ -23,7 +23,7 @@ const logar = async () => {
         return mostrarAlerta("Não é possivel logar sem suas informações. Preencha a senha!")
     }
     tela_carregamento.exibir()
-    let resposta = await fetch("http://localhost:3000/api/login", {
+    let resposta = await fetch("http://localhost:3030/api/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -36,14 +36,13 @@ const logar = async () => {
     if (resposta.ok) {
         resposta = await resposta.json()
         console.log(resposta)
-        tela_carregamento.fechar()
         if(lembrar_min_checkbox.checked){
             tokens.salvarLocal(resposta.token, resposta.nome)
         }else{
             console.log("session")
             tokens.salvarSession(resposta.token, resposta.nome)
         }
-        window.location.href = "http://localhost:5500/frontend/html/painelCentral.html";
+        window.location.replace("http://localhost:3030/html/painelCentral.html")
     } else {
         resposta = await resposta.json()
         tela_carregamento.fechar()

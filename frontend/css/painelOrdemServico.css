@@ -1,0 +1,587 @@
+body {
+    background-color: #EAE5FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    gap: 3vw;
+    height: 90vh;
+}
+
+.left-side-bar {
+    width: 5vw;
+    height: 90vh;
+    background-color: var(--color-white);
+    border-radius: 2rem;
+    min-width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0.5rem 2rem 0.5rem;
+}
+
+.left-side-bar img {
+    width: 54%;
+}
+
+.container-buttons-left-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.container-buttons-left-bar .buttons-left-bar {
+    height: 4.3rem;
+    min-width: 4.3rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--color-white);
+}
+
+.container-buttons-left-bar .buttons-left-bar img {
+    height: 20px;
+    width: 20px;
+}
+
+#icone-logout {
+    cursor: pointer;
+}
+
+.left-side-bar-linha {
+    width: 2%;
+    height: 30%;
+    background-color: #AFA7CA;
+}
+
+.main-content {
+    width: 85vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.up-side-bar {
+    height: 10vh;
+    width: 85vw;
+    background-color: var(--color-white);
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 7rem 1rem 7rem;
+    font-size: 2.3rem;
+    color: #AFA7CA;
+}
+
+.down-side-content {
+    height: 75vh;
+    width: 85vw;
+    background-color: var(--color-white);
+    border-radius: 2rem;
+}
+
+
+#bar-icone-os {
+    background-color: #EAE5FF;
+}
+
+.div-input-button-upbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 60%;
+}
+
+.div-input-button-upbar button {
+    border-radius: 1rem;
+}
+
+.container_input_pesquisa {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 5rem;
+    background-color: #EAE5FF;
+    border-radius: 1rem;
+    width: 50%;
+}
+
+.container_input_pesquisa input {
+    height: 100%;
+    width: 85%;
+    background-color: #eae5ff00;
+    transition: 1s all;
+    outline: 0 0 0 0;
+    border: 1px solid #EAE5FF;
+    font-size: 1.7rem;
+    border-radius: 1rem;
+}
+
+.container_input_pesquisa div {
+    height: 100%;
+    width: 15%;
+    background-color: #EAE5FF;
+    outline: 0 0 0 0;
+    border: 1px solid #EAE5FF;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+}
+
+.div-input-button-upbar div .focus {
+    height: 100%;
+    width: 15%;
+    background-color: blue;
+    outline: 0 0 0 0;
+    border: 1px solid #EAE5FF;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+}
+
+.container_input_pesquisa input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border-radius: 1rem;
+}
+
+#button-adicionar-cliente-modal {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.down-side-content {
+    padding: 0 1.5rem 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-topo-tabela {
+    width: 95%;
+    height: 14.5%;
+    display: grid;
+    grid-template-columns: 8% 20% 22% 18% 32%;
+    grid-template-rows: 100%;
+}
+
+.container-topo-tabela div {
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.lista_tabela {
+    width: 95%;
+    height: 0.5%;
+    background-color: #AFA7CA;
+}
+
+.container-corpo-tabela {
+    width: 95%;
+    height: 85%;
+    max-height: 85%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.linha-tabela {
+    width: 100%;
+    height: 15%;
+    display: grid;
+    min-height: 68px;
+    grid-template-columns: 8% 20% 22% 18% 32%;
+    grid-template-rows: 100%;
+    margin-top: 1rem;
+}
+
+.linha-tabela>div {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+}
+
+.campo_corpo_id div {
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--color-primary);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+}
+
+.ordem_servico_button {
+    border-radius: 1rem;
+    font-size: 1.7rem;
+    padding: 2rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.editar_cliente_modal_button {
+    border-radius: 1rem;
+    font-size: 1.7rem;
+    padding: 0;
+    margin-right: 1rem;
+    width: 15%;
+    background-color: #EAE5FF;
+    cursor: pointer;
+}
+
+.excluir_cliente_button {
+    border-radius: 1rem;
+    font-size: 1.7rem;
+    padding: 0;
+    margin-right: 1rem;
+    width: 15%;
+    background-color: #FF5B5B;
+    cursor: pointer;
+}
+
+.fundo-modal-criar-cliente {
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-criar-cliente {
+    width: 80%;
+    height: 90%;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-criar-cliente-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-criar-cliente-content .left-side-content {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 6rem;
+}
+
+.modal-criar-cliente-content .left-side-content  h2{
+    font-size: 3.7rem;
+}
+
+.modal-criar-cliente-content .left-side-content .container-input{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.modal-criar-cliente-content .left-side-content .container-input label{
+    font-size: 2rem;
+    width: fit-content;
+}
+
+.modal-criar-cliente-content .left-side-content .container-input input{
+    padding: 1.4rem;
+    border-radius: 1rem;
+    border: 1.8px solid #EAE5FF;
+    font-size: 1.7rem;
+    background-color: #EAE5FF;
+    transition: 1s all;
+    width: 80%;
+}
+
+.modal-criar-cliente-content .left-side-content .container-input input:focus{
+    padding: 1.4rem;
+    border-radius: 1rem;
+    border: 1.8px solid var(--color-secondary);
+    font-size: 1.7rem;
+    background-color: #F7F4FF;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.modal-criar-cliente-content .left-side-content button{
+    width: 80%;
+    font-size: 2.5rem;
+}
+
+.modal-criar-cliente-content .right-side-content {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.modal-criar-cliente-content .right-side-content button {
+    width: 30%;
+    font-size: 2.5rem;
+}
+
+.modal-criar-cliente-content .right-side-content img {
+    width: 100%;
+}
+
+#fechar_cadastrar_clientes_button {
+    background-color: #FF5B5B;
+}
+
+.fundo-modal-editar-cliente {
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-editar-os {
+    width: 80%;
+    height: 90%;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 4rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-editar-os-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.main-content-os {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-content-os h2 {
+    font-size: 3rem;
+}
+
+.main-content-os button {
+    font-size: 3rem;
+    width: 40%;
+}
+
+.container-inputs {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+}
+
+.left-side-modal-os {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 49.5%;
+    height: 100%;
+}
+
+.right-side-modal-os {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 49.5%;
+    height: 100%;
+}
+
+.container-input {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+}
+
+.container-input label {
+    font-size: 1.8rem;
+}
+
+.container-input input {
+    font-size: 1.8rem;
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid #EAE5FF;
+    font-size: 1.7rem;
+    background-color: #EAE5FF;
+    transition: 1s all;
+    width: 100%;
+}
+
+.container-input input:focus {
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid var(--color-secondary);
+    font-size: 1.7rem;
+    background-color: #F7F4FF;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    width: 100%;
+}
+
+textarea {
+    font-size: 1.8rem;
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid #EAE5FF;
+    font-size: 1.7rem;
+    background-color: #EAE5FF;
+    transition: 1s all;
+    min-height: 20rem;
+    width: 100%;
+}
+
+.modal-editar-cliente-content .left-side-content .container-input{
+    display: flex; 
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.modal-editar-cliente-content .left-side-content .container-input label{
+    font-size: 2rem;
+    width: fit-content;
+}
+
+.linha-modal-os {
+    width: 0.3%;
+    height: 90%;
+    background-color: #AFA7CA;
+    border-radius: 1rem;
+}
+
+.modal-editar-cliente-content .left-side-content .container-input input{
+    padding: 1.2rem;
+    border-radius: 1rem;
+    border: 1.8px solid #EAE5FF;
+    font-size: 1.7rem;
+    background-color: #EAE5FF;
+    transition: 1s all;
+    width: 80%;
+}
+
+.modal-editar-cliente-content .left-side-content .container-input input:focus{
+    padding: 1.2rem;
+    border-radius: 1rem;
+    border: 1.8px solid var(--color-secondary);
+    font-size: 1.7rem;
+    background-color: blue;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.fundo-modal-excluir {
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-excluir {
+    width: 40%;
+    height: 40%;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-excluir-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+    width: 70%;
+}
+
+.modal-excluir-content p {
+    font-size: 2.5rem;
+}
+
+.modal-excluir-content > div {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+
+.modal-excluir-content > div > button {
+    display: flex;
+    width: 70%;
+    font-size: 1.7rem;
+    border-radius: 1rem;
+}
+
+.modal-excluir-button-nao {
+    background-color: #FF5B5B;
+}

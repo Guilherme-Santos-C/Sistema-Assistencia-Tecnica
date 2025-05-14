@@ -4,7 +4,7 @@ import mascara_cpf from "./mascara_cpf.js"
 import tokens from "./tokens.js"
 
 if(tokens.logado()){
-    window.location.href = "http://localhost:5500/frontend/html/painelCentral.html";
+    window.location.href = "http://localhost:3030/html/painelCentral.html";
 }
 
 const img_senha = document.querySelector("#senha_visivel_img")
@@ -13,6 +13,7 @@ const input_senha_confirma = document.querySelector("#input-confirma-senha")
 const input_cpf = document.querySelector("#input-cpf")
 const input_senha_admin = document.querySelector("#input-senha-admin")
 const button_redefinir = document.querySelector("#redefinir")
+const inputs = document.querySelectorAll("input")
 mascara_cpf(input_cpf)
 
 img_senha.addEventListener("click", () => {
@@ -51,7 +52,7 @@ const redefinir_senha = async () => {
         return mostrarAlerta("As senhas não coencidem")
     }
     tela_carregamento.exibir()
-    let resposta = await fetch(`http://localhost:3000/api/usuarios/procurar?cpf=${input_cpf_value}&admin=${input_senha_admin_value}`, {
+    let resposta = await fetch(`http://localhost:3030/api/usuarios/procurar?cpf=${input_cpf_value}&admin=${input_senha_admin_value}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -59,7 +60,7 @@ const redefinir_senha = async () => {
     });
     if (resposta.ok) {
         const User = await resposta.json()
-        let resposta_api = await fetch(`http://localhost:3000/api/usuarios?id=${User._id}&admin=${input_senha_admin_value}`, {
+        let resposta_api = await fetch(`http://localhost:3030/api/usuarios?id=${User._id}&admin=${input_senha_admin_value}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -68,6 +69,7 @@ const redefinir_senha = async () => {
         })
         resposta_api = await resposta_api.json()
         tela_carregamento.fechar()
+        inputs.forEach(e => e.value = "")
         mostrarAlerta(resposta_api.mensagem)
     } else {
         resposta = await resposta.json()

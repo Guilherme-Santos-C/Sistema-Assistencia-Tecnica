@@ -8,6 +8,7 @@ const AdminControllers = require("./controllers/AdminControllers");
 const ClientesControllers = require("./controllers/ClientesControllers");
 const EquipamentoControllers = require("./controllers/EquipamentoControllers");
 const OsControllers = require("./controllers/OsControllers");
+const numeroOsControllers = require('./controllers/NumeroOsController');
 
 // Rotas do Admin
 router.post("/admin", AdminControllers.create);
@@ -23,21 +24,22 @@ router.delete("/usuarios/:id", verificaTokenAdmin, UserControllers.delete);
 // Rotas dos Clientes (usuário comum pode acessar)
 router.post("/clientes", verificaTokenUser, ClientesControllers.create);
 router.get("/clientes", verificaTokenUser, ClientesControllers.listar);
-router.get("/clientes/:id", verificaTokenUser, ClientesControllers.procurar);
-router.put("/clientes/:id", verificaTokenUser, ClientesControllers.editar);
-router.delete("/clientes/:id", verificaTokenUser, ClientesControllers.delete);
+router.get("/clientes/procurar", verificaTokenUser, ClientesControllers.procurar);
+router.put("/clientes", verificaTokenUser, ClientesControllers.editar);
+router.delete("/clientes", verificaTokenUser, ClientesControllers.delete);
 
 // Rotas das Ordens de Serviço (OS)
 router.post("/ordens", verificaTokenUser, OsControllers.create);
 router.get("/ordens", verificaTokenUser, OsControllers.listar);
-router.get("/ordens/:id", verificaTokenUser, OsControllers.procurar);
-router.put("/ordens/:id", verificaTokenUser, OsControllers.editar);
-router.delete("/ordens/:id", verificaTokenUser, OsControllers.delete);
+router.get("/ordens/procurar", verificaTokenUser, OsControllers.procurar);
+router.put("/ordens", verificaTokenUser, OsControllers.editar);
+router.delete("/ordens", verificaTokenUser, OsControllers.delete);
+router.get("/ordens/numero", verificaTokenUser, numeroOsControllers.adicionarUm);
 
 // Rotas dos Equipamentos
 router.post("/equipamentos", verificaTokenUser, EquipamentoControllers.create);
 router.get("/equipamentos", verificaTokenUser, EquipamentoControllers.listar);
-router.get("/equipamentos/:id", verificaTokenUser, EquipamentoControllers.procurar);
+router.get("/equipamentos/procurar", verificaTokenUser, EquipamentoControllers.procurar);
 router.put("/equipamentos/:id", verificaTokenUser, EquipamentoControllers.editar);
 router.delete("/equipamentos/:id", verificaTokenUser, EquipamentoControllers.delete);
 

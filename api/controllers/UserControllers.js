@@ -2,6 +2,16 @@ const UserModel = require("../models/User.js");
 const AdminModel = require("../models/Admin.js")
 const bcrypt = require("bcrypt")
 
+const remove_caracteres_cpf = (cpf) => {
+    const cpf_array = [...cpf]
+    let cpf_sem_caractere = []
+    cpf_array.forEach((e) => {
+        if(!isNaN(e)){
+            cpf_sem_caractere.push(e)
+        }
+    })
+    return cpf_sem_caractere.join("")
+}
 
 const UserControllers = {
     create: async (req, res) => {
@@ -10,7 +20,7 @@ const UserControllers = {
                 nome: req.body.nome,
                 email: req.body.email,
                 password: req.body.password,
-                cpf: req.body.cpf
+                cpf: remove_caracteres_cpf(req.body.cpf)
             }
             const cpf_existe = await UserModel.findOne({ cpf: User.cpf })
             if (cpf_existe) return res.status(400).send({ mensagem: "Este Usuário já existe!" })
@@ -63,7 +73,6 @@ const UserControllers = {
                 const passwordHash = await bcrypt.hash(req.body.password, salt)
                 User.password = passwordHash
             } 
-
             await User.save()
             res.status(200).json({ mensagem: "Informações atualizadas com sucesso" })
         }
@@ -75,7 +84,7 @@ const UserControllers = {
     ,
     procurar: async (req, res) => {
         try {
-            const cpf = req.query.cpf
+            const cpf = remove_caracteres_cpf(req.query.cpf)
             if (!cpf) {
                 return res.status(400).json({ mensagem: "Falta o CPF na requisição!" })
             }

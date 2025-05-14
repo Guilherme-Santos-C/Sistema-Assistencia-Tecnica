@@ -5,10 +5,11 @@ const Schema = mongoose.Schema
 const OsSchema = new Schema ({
     equipamento: { type: mongoose.Schema.Types.ObjectId, ref: "Equipamento", required: true },
     cliente: { type: mongoose.Schema.Types.ObjectId, ref: "Cliente", required: true },
-    status: String, // AJEITARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+    numero: {type: String, required: true},
+    status: String,
     orcamento: Number,
     diagnostico: String,
-    Observacoes: String
+    observacoes: String
 }, {timestamps: true})
 
 module.exports = mongoose.model("Os", OsSchema)
