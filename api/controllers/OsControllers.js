@@ -1,5 +1,6 @@
 const OsModel = require("../models/Os");
 const ClienteModel = require("../models/Cliente")
+const imprimir_pdf = require("../controllers/pdf")
 
 const remove_caracteres_cpf = (cpf) => {
     const cpf_array = [...cpf]
@@ -15,6 +16,10 @@ const remove_caracteres_cpf = (cpf) => {
 const OsControllers = {
     create: async (req, res) => {
         try {
+            const nome_usuario = req.body.nome_usuario
+            const cpf_usuario = req.body.cpf_usuario
+            const nome_equipamaento = req.body.nome_equipamento
+            const marca_equipamento = req.body.marca_equipamento
             const os = {
                 equipamento: req.body.equipamento_id,
                 cliente: req.body.cliente_id,
@@ -22,9 +27,14 @@ const OsControllers = {
                 status: req.body.status,
                 orcamento: req.body.orcamento,
                 diagnostico: req.body.diagnostico,
-                observacoes: req.body.observacoes
             };
             const resposta_db = await OsModel.create(os);
+            const Data = new Date()
+            const dia = Data.getDate()
+            const mes = Data.getMonth()
+            const ano = Data.getFullYear()
+            const data = `${dia}/${mes > 10 ? mes + 1 : "0" + mes + 1}/${ano}`
+            imprimir_pdf(nome_usuario, cpf_usuario, nome_equipamaento, marca_equipamento, data);
             res.status(201).json({ mensagem: "Ordem de serviço criada com sucesso!" });
         } catch (err) {
             console.log(err);
@@ -87,11 +97,13 @@ const OsControllers = {
     listar: async (req, res) => {
         try {
             const param_busca = req.query.busca || ""
-            let resposta_db_numero = await OsModel.find({ numero: { $regex: "^" + param_busca } })
-                .sort({ createdAt: -1 }) // -1 = ordem decrescente (mais novos primeiro)
-                .limit(10);
+            if (param_busca == ""){
+                let Oss = await OsModel.find().sort({ createdAt: -1 }).limit(50);
+                return res.status(200).json(Oss)   
+            } 
+            let resposta_db_numero = await OsModel.find({ numero: { $regex: "^" + param_busca } }).sort({ createdAt: -1 }).limit(30);
             let cliente = await ClienteModel.findOne({
-                cpf: { $regex: param_busca }
+                cpf: { $regex: "^" + param_busca }
             })
             let resposta_db_id_cliente = []
             if (cliente != null) {
@@ -115,7 +127,6 @@ const OsControllers = {
                 return os
             })
             let resposta_db = [...resposta_db_numero, ...resposta_db_id_cliente];
-
             // Remover duplicados com base no _id
             const resposta_db_unica = resposta_db.filter(
                 (os, index, self) =>

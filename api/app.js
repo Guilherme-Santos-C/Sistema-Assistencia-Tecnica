@@ -9,7 +9,7 @@ const port = 3030;
 
 app.use(express.json())
 app.use(cors());
-app.use("/api",rotas)
+app.use("/api", rotas)
 conn_DB()
 
 app.use(express.static(path.join(__dirname, "../frontend")));
@@ -23,4 +23,3 @@ app.listen(port, () => {
 
 
 
-  

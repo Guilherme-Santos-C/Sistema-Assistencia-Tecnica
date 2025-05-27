@@ -151,3 +151,12 @@ button:active {
     transform: scale(0.95); /* botão encolhe um pouco */
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); /* afundado */
   }
+
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #AFA7CA;
+    border-radius: 2rem;
+}

@@ -1,5 +1,6 @@
 const express = require('express');
 const { verificaTokenAdmin, verificaTokenUser } = require("./middlewares/authMiddleware");
+const { validaTokenAdmin, validaTokenUser} = require("./validaToken");
 const login = require("./login")
 const router = express.Router();
 
@@ -45,5 +46,9 @@ router.delete("/equipamentos/:id", verificaTokenUser, EquipamentoControllers.del
 
 // Login
 router.post("/login", login)
+
+// Verifica token
+router.get("/verificaTokenUser", validaTokenUser)
+router.get("/verificaTokenAdmin", validaTokenAdmin)
 
 module.exports = router;

@@ -39,7 +39,7 @@ const login = async (req, res) => {
                 {id: User._id, email: req.body.user, role: "usuário" },
                 "lakshdj80b@dpks5ao",
                 { expiresIn: "8h" })
-            res.status(200).json({ mensagem: "Sucesso no login", token, nome: User.nome})
+            res.status(200).json({ mensagem: "Sucesso no login", token, nome: User.nome, cpf: User.cpf})
         }
     } catch (error) {
         console.log(error)

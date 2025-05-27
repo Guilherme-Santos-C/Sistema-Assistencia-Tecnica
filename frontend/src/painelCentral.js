@@ -1,7 +1,7 @@
 import mostrarAlerta from "./mostrarAlerta.js"
 import tokens from "./tokens.js"
 
-if(!tokens.logado()){
+if (! await tokens.logado()) {
     window.location.replace("http://localhost:3030")
 }
 
@@ -20,12 +20,12 @@ button_sair_modal.addEventListener("click", () => {
 })
 
 let nome_usuario
-if(localStorage.getItem("nome") != null && sessionStorage.getItem("nome") == null) {
-   nome_usuario = localStorage.getItem("nome").split(" ")[0] 
-}else if(localStorage.getItem("nome") == null && sessionStorage.getItem("nome") != null){
-    nome_usuario =sessionStorage.getItem("nome").split(" ")[0]
+if (localStorage.getItem("nome") != null && sessionStorage.getItem("nome") == null) {
+    nome_usuario = localStorage.getItem("nome")
+} else if (localStorage.getItem("nome") == null && sessionStorage.getItem("nome") != null) {
+    nome_usuario = sessionStorage.getItem("nome")
 }
-document.querySelector("#nome_usuario").innerText = nome_usuario
+document.querySelector("#nome_usuario").innerText = nome_usuario.split(" ")[0]
 
 
 // Redirecionamento dos botões da barra lateral

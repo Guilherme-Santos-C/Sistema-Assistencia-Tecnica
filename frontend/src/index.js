@@ -2,7 +2,7 @@ import mostrarAlerta from "./mostrarAlerta.js"
 import tela_carregamento from "./tela_carregamento.js"
 import tokens from "./tokens.js"
 
-if(tokens.logado()){
+if (await tokens.logado()) {
     window.location.replace("http://localhost:3030/html/painelCentral.html")
 }
 
@@ -35,12 +35,10 @@ const logar = async () => {
     });
     if (resposta.ok) {
         resposta = await resposta.json()
-        console.log(resposta)
         if(lembrar_min_checkbox.checked){
-            tokens.salvarLocal(resposta.token, resposta.nome)
+            tokens.salvarLocal(resposta.token, resposta.nome, resposta.cpf)
         }else{
-            console.log("session")
-            tokens.salvarSession(resposta.token, resposta.nome)
+            tokens.salvarSession(resposta.token, resposta.nome, resposta.cpf)
         }
         window.location.replace("http://localhost:3030/html/painelCentral.html")
     } else {

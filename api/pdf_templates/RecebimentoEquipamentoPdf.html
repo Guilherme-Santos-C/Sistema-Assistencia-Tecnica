@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Recibo do recebimento de equipamento</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 70px;
+            font-family: "Blauer nue";
+            height: 30vh;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 35px;
+        }
+
+        p {
+            text-align: justify;
+            font-size: 20px;
+        }
+
+        #div {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="data:image/svg+xml;base64,{{IMAGEM_BASE64}}" width="250" />
+        <h1>Recibo de recebimento de mercadoria</h1>
+    </div>
+    <div id="div">
+        <div>
+            <p>
+                Eu, :nome, portador(a) do CPF n° :cpf, residente e domiciliado(a) nesta cidade, declaro, para os devidos
+                fins de direito, que na presente data recebo em minha posse o equipamento :equipamento, da marca :marca.
+
+                Estou ciente de que a guarda, o uso e a conservação do referido bem são de minha inteira
+                responsabilidade, comprometendo-me a zelar pela sua integridade, 
+                bem como a devolvê-lo nas mesmas condições em que o recebi, salvo desgaste natural
+                decorrente do uso adequado.
+
+                Declaro, que fui devidamente orientado(a) quanto às condições de uso do equipamento, e que
+                eventuais danos causados por mau uso, negligência ou imprudência poderão implicar em responsabilização.
+
+                Firmo o presente termo de
+                recebimento, ciente de seu conteúdo e das obrigações a mim atribuídas.
+            </p>
+            <p>Assino abaixo, em :data, para que produza a legalidade necessária.</p>
+        </div>
+        <hr style="border: none; border-top: 2px solid black; width: 600px; margin-top: 250px;" />
+        <p style="margin-left: 10px; font-size: 15px;">Assinatura</p>
+    </div>
+</body>
+
+</html>

@@ -180,7 +180,7 @@ main {
     width: 95%;
     height: 14.5%;
     display: grid;
-    grid-template-columns: 8% 24% 18% 18% 32%;
+    grid-template-columns: 6% 26% 18% 18% 32%;
     grid-template-rows: 100%;
 }
 
@@ -210,7 +210,7 @@ main {
     width: 100%;
     height: 15%;
     display: grid;
-    grid-template-columns: 8% 24% 18% 18% 32%;
+    grid-template-columns: 6% 26% 18% 18% 32%;
     grid-template-rows: 100%;
     margin-top: 1rem;
 }
@@ -219,6 +219,10 @@ main {
     display: flex;
     align-items: center;
     font-size: 1.8rem;
+}
+
+.campo_corpo_nome {
+    padding-right: 2px;
 }
 
 .campo_corpo_id div {

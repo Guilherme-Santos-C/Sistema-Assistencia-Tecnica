@@ -7,6 +7,10 @@ body {
     height: 100vh;
 }
 
+*::-webkit-scrollbar {
+    height: 5px;
+}
+
 main {
     display: flex;
     gap: 3vw;
@@ -86,6 +90,9 @@ main {
     width: 85vw;
     background-color: var(--color-white);
     border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -232,7 +239,7 @@ main {
     color: var(--color-white);
 }
 
-.ordem_servico_button {
+.visualizar_os_button {
     border-radius: 1rem;
     font-size: 1.7rem;
     padding: 2rem;
@@ -240,7 +247,7 @@ main {
     cursor: pointer;
 }
 
-.editar_cliente_modal_button {
+.editar_os_modal_button {
     border-radius: 1rem;
     font-size: 1.7rem;
     padding: 0;
@@ -250,7 +257,7 @@ main {
     cursor: pointer;
 }
 
-.excluir_cliente_button {
+.excluir_os_button {
     border-radius: 1rem;
     font-size: 1.7rem;
     padding: 0;
@@ -367,7 +374,7 @@ main {
     background-color: #FF5B5B;
 }
 
-.fundo-modal-editar-cliente {
+.fundo-modal-editar-os {
     z-index: 2;
     width: 100vw;
     height: 100vh;
@@ -389,9 +396,26 @@ main {
     border-radius: 1rem;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 4rem;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal-editar-os-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 7rem;
+}
+
+#fechar_editar_os_button {
+    width: 10%;
+    background-color: #EAE5FF;
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--color-black);
+    font-size: 1.8rem;
 }
 
 .modal-editar-os-content {
@@ -417,8 +441,8 @@ main {
 }
 
 .main-content-os button {
-    font-size: 3rem;
-    width: 40%;
+    font-size: 2.5rem;
+    width: 30%;
 }
 
 .container-inputs {
@@ -479,6 +503,28 @@ main {
     width: 100%;
 }
 
+select {
+    font-size: 1.8rem;
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid #EAE5FF;
+    font-size: 1.7rem;
+    background-color: #EAE5FF;
+    transition: 1s all;
+    width: 100%;
+}
+
+select:focus {
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid var(--color-secondary);
+    font-size: 1.7rem;
+    background-color: #F7F4FF;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    width: 100%;
+}
+
 textarea {
     font-size: 1.8rem;
     padding: 1.7rem;
@@ -488,6 +534,17 @@ textarea {
     background-color: #EAE5FF;
     transition: 1s all;
     min-height: 20rem;
+    width: 100%;
+}
+
+textarea:focus {
+    padding: 1.7rem;
+    border-radius: 1rem;
+    border: 1.8px solid var(--color-secondary);
+    font-size: 1.7rem;
+    background-color: #F7F4FF;
+    box-shadow: 0 0 0 0;
+    outline: 0;
     width: 100%;
 }
 
@@ -584,4 +641,184 @@ textarea {
 
 .modal-excluir-button-nao {
     background-color: #FF5B5B;
+}
+
+.campo_corpo_telefone {
+    padding-left: 1rem;
+}
+
+#icone_loading_editar_os {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    display: none;
+}
+
+#icone_load_tabela {
+    display: none;
+}
+
+.fundo-modal-visualizar-os {
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-visuzaliar-os {
+    width: 80%;
+    height: 92%;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 2rem;
+}
+
+.modal-visualizar-os-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-visualizar-os {
+    width: 95%;
+    height: 13%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EAE5FF;
+    padding: 1.5rem;
+    border-radius: 1.3rem;
+}
+
+.header-visualizar-os h3 {
+    font-size: 3.5rem;
+}
+
+.header-visualizar-os div {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 35%;
+}
+
+#fechar_visualizar_os_button {
+    width: 30%;
+    background-color: var(--color-white);
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--color-black);
+    font-size: 1.8rem;
+}
+
+#gerar_protocolo_saida {
+    width: 70%;
+    font-size: 1.8rem;
+}
+
+.main-content-os-visualizar {
+    display: flex;
+    align-items: center;
+    height: 87%;
+    width: 100%;
+}
+
+.modal-os-visualizar-leftside {
+    width: 49.5%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 2rem;   
+    align-items: center; 
+}
+
+.modal-os-visualizar-leftside h4 { 
+    font-size: 2.6rem;
+    width: 90%;
+
+}
+
+.modal-os-visualizar-rightside {
+    width: 49.5%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 2rem;   
+    align-items: center; 
+
+}
+
+.modal-os-visualizar-rightside h4 { 
+    font-size: 2.6rem;
+    width: 90%;
+}
+
+.linha-modal-os-visualizar {
+    width: 0.3%;
+    height: 90%;
+    background-color: #AFA7CA;
+    border-radius: 1rem;
+}
+
+.container-text-visualizar {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 1rem;
+    min-height: 20%;
+    max-height: 20%;
+    overflow-y: scroll;
+}
+
+.container-text-visualizar p {
+    font-size: 1.9rem;
+}
+
+.container-text-visualizar div {
+    background-color: #EAE5FF;
+    border-radius: 1.3rem;
+    padding: 2rem;
+    height: auto;
+}
+
+.container-text-visualizar div p {
+    font-size: 1.6rem;    
+}
+
+.container-text-duplo {
+    display: flex;
+    width: 90%;
+    gap: 1rem;
+    min-height: 20%;
+    max-height: 20%;
+}
+
+.container-text-duplo .container-text-visualizar{
+    display: flex;
+    width: 90%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.container-text-duplo .container-text-visualizar div {
+    display: flex;
+    align-items: center;
+}
+
+#text-status-os {
+    font-size: 1.6rem;
 }

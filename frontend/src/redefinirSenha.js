@@ -3,8 +3,8 @@ import tela_carregamento from "./tela_carregamento.js"
 import mascara_cpf from "./mascara_cpf.js"
 import tokens from "./tokens.js"
 
-if(tokens.logado()){
-    window.location.href = "http://localhost:3030/html/painelCentral.html";
+if (await tokens.logado()) {
+    window.location.replace("http://localhost:3030")
 }
 
 const img_senha = document.querySelector("#senha_visivel_img")

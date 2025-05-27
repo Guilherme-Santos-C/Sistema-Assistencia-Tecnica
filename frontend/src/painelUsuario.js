@@ -12,7 +12,7 @@ input_cliente.addEventListener("blur", () => {
     div_senha_input.classList.remove("focus")
 })
 
-if (!tokens.logado()) {
+if (! await tokens.logado()) {
     window.location.replace("http://localhost:3030")
 }
 
@@ -30,12 +30,11 @@ buttons_bar[2].addEventListener("click", () => {
 
 let nome_usuario
 if (localStorage.getItem("nome") != null && sessionStorage.getItem("nome") == null) {
-    nome_usuario = localStorage.getItem("nome").split(" ")[0]
+    nome_usuario = localStorage.getItem("nome")
 } else if (localStorage.getItem("nome") == null && sessionStorage.getItem("nome") != null) {
-    nome_usuario = sessionStorage.getItem("nome").split(" ")[0]
+    nome_usuario = sessionStorage.getItem("nome")
 }
-document.querySelector("#nome_usuario").innerText = nome_usuario
-
+document.querySelector("#nome_usuario").innerText = nome_usuario.split(" ")[0]
 
 // Modal - Logout
 const logout_button = document.querySelector("#icone-logout")
@@ -111,6 +110,10 @@ const criar_cliente = async () => {
 
     if (resposta_api.ok) {
         const resposta_json = await resposta_api.json()
+        input_nome_cadastrar_cliente.value = ""
+        input_cpf_cadastrar_cliente.value = ""
+        input_endereco_cadastrar_cliente.value = ""
+        input_telefone_cadastrar_cliente.value = ""
         modal_conteudo.style.display = "flex"
         modal_header.style.display = "flex"
         icone_loading.style.display = "none"
@@ -118,6 +121,10 @@ const criar_cliente = async () => {
         atualiza_tabela()
     } else {
         const resposta_json = await resposta_api.json()
+        input_nome_cadastrar_cliente.value = ""
+        input_cpf_cadastrar_cliente.value = ""
+        input_endereco_cadastrar_cliente.value = ""
+        input_telefone_cadastrar_cliente.value = ""
         modal_conteudo.style.display = "flex"
         icone_loading.style.display = "none"
         mostrarAlerta(resposta_json.mensagem)
@@ -283,7 +290,6 @@ procurar_cliente_input.addEventListener("keyup", e => {
     clearTimeout(timer); // limpa o último timer
     timer = setTimeout(async () => {
         // Aqui vai o que você quer fazer depois do delay
-        console.log(e.target.value)
         let resposta_api = await fetch(`http://localhost:3030/api/clientes?busca=${e.target.value}`, {
             method: "GET",
             headers: {
@@ -504,6 +510,7 @@ cadastrar_os_button.addEventListener("click", async () => {
     })
     if(equipamento.ok){
         equipamento = await equipamento.json()
+        console.log(input_cadastrar_os_marca.value)
         let os = await fetch("http://localhost:3030/api/ordens", {
             method: "POST",
             headers: {
@@ -514,10 +521,14 @@ cadastrar_os_button.addEventListener("click", async () => {
                 equipamento_id: equipamento._id,
                 cliente_id: id_cliente_editar,
                 numero: numeroOs,
-                status: "Aguardando Diagnóstico",
+                status: "Aguardando diagnóstico",
                 orcamento: input_cadastrar_os_orcamento.value.trim().replace(",", "."),
                 diagnostico: input_cadastrar_os_diagnostico.value.trim(),
-                observacoes: input_cadastrar_os_observacoes.value.trim()
+                observacoes: input_cadastrar_os_observacoes.value.trim(),
+                nome_usuario,
+                cpf_usuario: localStorage.getItem("cpf") || sessionStorage.getItem("cpf"),
+                nome_equipamento: input_cadastrar_os_modelo.value.trim(),
+                marca_equipamento: input_cadastrar_os_marca.value
             })
         })
         if(os.ok){

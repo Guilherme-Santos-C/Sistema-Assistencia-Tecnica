@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ordens de serviço</title>
-    <link rel="stylesheet" href="../css/painelOrdemServico.css">
     <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/painelOrdemServico.css">
     <link rel="shortcut icon" type="image/jpg" href="../images/e_grande_icone.png" />
 </head>
 
@@ -22,67 +22,49 @@
             </div>
         </div>
     </div>
-    <div class="fundo-modal-criar-cliente">
-        <div class="modal-criar-cliente">
-            <img src="../images/loading.svg" style="width: 20%;" alt="Animação que representa o carregamento da página" id="icone_loading">
-            <div class="modal-criar-cliente-content">
-                <div class="left-side-content">
-                    <h2>Cadastrar um <br>novo cliente</h2>
-                    <div class="container-input">
-                        <label for="input-cadastrar-cliente-nome">Nome</label>
-                        <input type="text" autocomplete="off" placeholder="Digite o nome do cliente" id="input-cadastrar-cliente-nome" required>
-                    </div>
-                    <div class="container-input">
-                        <label for="input-cadastrar-cliente-cpf">Cpf</label>
-                        <input type="text" autocomplete="off" placeholder="Digite o cpf do cliente" id="input-cadastrar-cliente-cpf" required>
-                    </div>
-                    <div class="container-input">
-                        <label for="input-cadastrar-cliente-endereco">Endereço</label>
-                        <input type="text" autocomplete="off" placeholder="Digite o endereço do cliente" id="input-cadastrar-cliente-endereco" required>
-                    </div>
-                    <div class="container-input">
-                        <label for="input-cadastrar-cliente-telefone">telefone</label>
-                        <input type="text" autocomplete="off" placeholder="Digite o telefone do cliente" id="input-cadastrar-cliente-telefone" required>
-                    </div>
-                    <button id="criar-cliente-button">Cadastrar!</button>
-                </div>
-                <div class="right-side-content">
-                    <img src="../images/ilustração_cadastrar_clientes.svg" alt="ilustração de um homem com pastas">
-                    <button id="fechar_cadastrar_clientes_button">Voltar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fundo-modal-criar-os">
+    <div class="fundo-modal-editar-os">
         <div class="modal-editar-os">
-            <img src="../images/loading.svg" style="width: 20%;" alt="Animação que representa o carregamento da página" id="icone_loading">
+            <img src="../images/loading.svg" style="width: 20%;" alt="Animação que representa o carregamento da página"
+                id="icone_loading_editar_os">
             <div class="modal-editar-os-content">
                 <div class="main-content-os">
-                    <h2>Editar ordem de serviço</h2>
+                    <div class="modal-editar-os-header">
+                        <h2>Editar ordem de serviço</h2>
+                        <button id="fechar_editar_os_button">voltar<img src="../images/voltar.svg"
+                                alt="seta de voltar"></button>
+                    </div>
                     <div class="container-inputs">
                         <div class="left-side-modal-os">
                             <div class="container-input">
                                 <label for="input-editar-os-orcamento">Orçamento</label>
-                                <input type="text" autocomplete="off" placeholder="Digite o orçamento" id="input-editar-os-orcamento" required>
+                                <input type="text" autocomplete="off" placeholder="Digite o orçamento"
+                                    id="input-editar-os-orcamento" required>
                             </div>
                             <div class="container-input">
-                                <label for="input-editar-diagnostico-os">Diagnóstico</label>
-                                <textarea name="" id="" placeholder="Diagnóstico do problema"></textarea>
+                                <label for="input-editar-os-diagnostico">Diagnóstico</label>
+                                <textarea name="" id="input-editar-os-diagnostico"
+                                    placeholder="Diagnóstico do problema"></textarea>
                             </div>
                         </div>
                         <div class="linha-modal-os"></div>
                         <div class="left-side-modal-os">
                             <div class="container-input">
-                                <label for="input-editar-cliente-nome">Status</label>
-                                <input type="text" autocomplete="off" placeholder="Digite o nome do cliente" id="input-editar-cliente-nome" required>
+                                <label for="input-editar-os-status">Status</label>
+                                <select id="input-editar-os-status">
+                                    <option value="Aguardando diagnóstico" selected>Aguardando diagnóstico</option>
+                                    <option value="Aguardando autorização">Aguardando autorização</option>
+                                    <option value="Em conserto">Em conserto</option>
+                                    <option value="Pronto">Pronto</option>
+                                </select>
                             </div>
                             <div class="container-input">
                                 <label for="input-editar-observacao-os">Observação</label>
-                                <textarea name="" id=""></textarea>
+                                <textarea name="" id="input-editar-os-observacoes"
+                                    placeholder="Observações do serviço"></textarea>
                             </div>
                         </div>
                     </div>
-                    <button id="editar-cliente-button">Editar informações!</button>
+                    <button id="editar-os-button">Salvar!</button>
                 </div>
             </div>
         </div>
@@ -90,10 +72,90 @@
     <div class="fundo-modal-excluir">
         <div class="modal-excluir">
             <div class="modal-excluir-content">
-                <p class="modal-excluir-p">Você deseja exluir esse cliente ?<br>(esta ação é irreversível)</p>
+                <p class="modal-excluir-p">Você deseja exluir essa ordem de serviço ?<br>(esta ação é irreversível)</p>
                 <div>
                     <button class="modal-excluir-button-nao">Não</button>
-                    <button class="modal-excluir-button-sair">Sim, desejo excluir</button>
+                    <button class="modal-excluir-button-confirma">Sim, desejo excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fundo-modal-visualizar-os">
+        <div class="modal-visuzaliar-os">
+            <img src="../images/loading.svg" style="width: 20%; display: none;" alt="Animação que representa o carregamento da página" id="icone_loading_visualizar_os">
+            <div class="modal-visualizar-os-content">
+                <div class="header-visualizar-os">
+                    <h3>Ordem de serviço</h3>
+                    <div>
+                        <button id="gerar_protocolo_saida">Gerar protocolo de saída</button>
+                        <button id="fechar_visualizar_os_button">voltar<img src="../images/voltar.svg"
+                                alt="seta de voltar"></button>
+                    </div>
+                </div>
+                <div class="main-content-os-visualizar">
+                    <div class="modal-os-visualizar-leftside">
+                        <h4>Informações do equipamento</h4>
+                        <div class="container-text-visualizar">
+                            <p>Marca</p>
+                            <div>
+                                <p id="text-marca-equipamento">aaaaaaaaaaaaa</p>
+                            </div>
+                        </div>
+                        <div class="container-text-visualizar">
+                            <p>Modelo</p>
+                            <div>
+                                <p id="text-modelo-equipamento">aaaaaaaaaaaaa</p>
+                            </div>
+                        </div>
+                        <div class="container-text-visualizar">
+                            <p>Cor</p>
+                            <div>
+                                <p id="text-cor-equipamento">aaaaaaaaaaaaaa</p>
+                            </div>
+                        </div>
+                        <div class="container-text-visualizar">
+                            <p>Observações do equipamento</p>
+                            <div>
+                                <p id="text-observacoes-equipamento">aaaaaaaaaa</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="linha-modal-os-visualizar"></div>
+                    <div class="modal-os-visualizar-rightside">
+                        <h4>Informações do serviço</h4>
+                        <div class="container-text-visualizar">
+                            <p>Orçamento</p>
+                            <div>
+                                <p id="text-orcamento-os">aaaaaaaaaaaaaaa</p>
+                            </div>
+                        </div>
+                        <div class="container-text-visualizar">
+                            <p>Diagnóstico</p>
+                            <div>
+                                <p id="text-diagnostico-os">uasi maxime impedit sunt tempora tempore blanditiis accusantium.</p>
+                            </div>
+                        </div>
+                        <div class="container-text-visualizar">
+                            <p>Observações do serviço</p>
+                            <div>
+                                <p id="text-observacoes-os">aaaaaaaaaaaaaaaaa</p>
+                            </div>
+                        </div>
+                        <div class="container-text-duplo">
+                            <div class="container-text-visualizar">
+                                <p>CPF do cliente</p>
+                                <div>
+                                    <p id="text-cpf-os">aaaaaaaaaaa</p>
+                                </div>
+                            </div>
+                            <div class="container-text-visualizar">
+                                <p>Status</p>
+                                <div>
+                                    <p id="text-status-os">Aguardando Diagnóstico</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -103,8 +165,10 @@
             <img src="../images/Logo.svg" alt="logo icone" class="logo">
             <div class="left-side-bar-linha"></div>
             <div class="container-buttons-left-bar">
-                <button class="buttons-left-bar" id="bar-icone-clientes"><img src="../images/Clientes.svg" alt="icone de clientes"></button>
-                <button class="buttons-left-bar" id="bar-icone-os"><img src="../images/Ordem de serviço.svg" alt="icone de checklist"></button>
+                <button class="buttons-left-bar" id="bar-icone-clientes"><img src="../images/Clientes.svg"
+                        alt="icone de clientes"></button>
+                <button class="buttons-left-bar" id="bar-icone-os"><img src="../images/Ordem de serviço.svg"
+                        alt="icone de checklist"></button>
                 <button class="buttons-left-bar"><img src="../images/Pesquisa.svg" alt="icone de pesquisa"></button>
             </div>
             <div class="left-side-bar-linha"></div>
@@ -118,13 +182,15 @@
                         <div>
                             <img src="../images/lupa_cinza.svg" alt="icone de lupa">
                         </div>
-                        <input autocomplete="off" type="text" placeholder="Cpf do cliente ou código da OS" id="pesquisa_input">
+                        <input autocomplete="off" type="text" placeholder="Cpf do cliente ou código da OS"
+                            id="pesquisa_input">
                     </div>
                 </div>
                 <p id="nome_usuario">Usuário</p>
             </div>
             <div class="down-side-content">
-                <div class="container-topo-tabela">
+                <img src="../images/loading.svg" alt="Icone de carregamento" id="icone_load_tabela">
+                <div class="container-topo-tabela tabela">
                     <div class="campo_topo_id">
                         <p>id</p>
                     </div>
@@ -141,9 +207,9 @@
                         <p>Modificar</p>
                     </div>
                 </div>
-                <div class="lista_tabela"></div>
-                <div class="container-corpo-tabela">
-                    <!-- Tabela, carregada com js--> 
+                <div class="lista_tabela tabela"></div>
+                <div class="container-corpo-tabela tabela">
+                    <!-- Tabela, carregada com js-->
                 </div>
             </div>
         </div>
