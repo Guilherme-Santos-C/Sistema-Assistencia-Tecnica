@@ -134,8 +134,8 @@ main {
     border: 1.8px solid var(--color-secondary);
 }
 
-.container-input-login img {
-    width: 10%;
+.container-input-login img { /* Olho da senha */
+    width: 7%;
 }
 
 .container-input-login #input-login-senha{

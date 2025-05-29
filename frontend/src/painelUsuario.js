@@ -510,7 +510,6 @@ cadastrar_os_button.addEventListener("click", async () => {
     })
     if(equipamento.ok){
         equipamento = await equipamento.json()
-        console.log(input_cadastrar_os_marca.value)
         let os = await fetch("http://localhost:3030/api/ordens", {
             method: "POST",
             headers: {

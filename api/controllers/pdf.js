@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
-const imprimir_pdf = async (nome, cpf, equipamento, marca, data) => {
+const imprimir_pdf = async (nome, cpf, equipamento, marca, data, numero) => {
   const navegador = await puppeteer.launch();
   const pagina = await navegador.newPage();
 
@@ -20,6 +20,7 @@ const imprimir_pdf = async (nome, cpf, equipamento, marca, data) => {
   html = html.replace(':equipamento', equipamento);
   html = html.replace(':marca', marca);
   html = html.replace(':data', data);
+  html = html.replace(':numero', numero);
   html = html.replace('{{IMAGEM_BASE64}}', imagemBase64);
 
   // Define o conteúdo da página

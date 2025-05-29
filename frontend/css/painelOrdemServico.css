@@ -186,7 +186,7 @@ main {
     width: 95%;
     height: 14.5%;
     display: grid;
-    grid-template-columns: 8% 20% 22% 18% 32%;
+    grid-template-columns: 15% 20% 22% 18% 25%;
     grid-template-rows: 100%;
 }
 
@@ -217,7 +217,7 @@ main {
     height: 15%;
     display: grid;
     min-height: 68px;
-    grid-template-columns: 8% 20% 22% 18% 32%;
+    grid-template-columns: 15% 20% 22% 18% 25%;
     grid-template-rows: 100%;
     margin-top: 1rem;
 }
@@ -229,13 +229,14 @@ main {
 }
 
 .campo_corpo_id div {
-    width: 4rem;
+    width: 45%;
     height: 4rem;
     background-color: var(--color-primary);
     border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 1rem;
     color: var(--color-white);
 }
 
@@ -252,7 +253,8 @@ main {
     font-size: 1.7rem;
     padding: 0;
     margin-right: 1rem;
-    width: 15%;
+    width: 5rem;
+    height: 5rem;
     background-color: #EAE5FF;
     cursor: pointer;
 }
@@ -262,7 +264,8 @@ main {
     font-size: 1.7rem;
     padding: 0;
     margin-right: 1rem;
-    width: 15%;
+    width: 5rem;
+    height: 5rem;
     background-color: #FF5B5B;
     cursor: pointer;
 }
@@ -644,7 +647,7 @@ textarea:focus {
 }
 
 .campo_corpo_telefone {
-    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 #icone_loading_editar_os {

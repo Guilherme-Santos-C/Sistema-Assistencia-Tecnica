@@ -20,6 +20,8 @@ if (!await tokens.logado()) {
 const modal_editar_os = document.querySelector(".fundo-modal-editar-os")
 // Modal - excluir OS
 const modal_excluir_os = document.querySelector(".fundo-modal-excluir")
+// Modal - visualizar OS
+const modal_visualizar_os = document.querySelector(".fundo-modal-visualizar-os")
 
 // Redirecionamento dos botões da barra lateral
 const buttons_bar = document.querySelectorAll(".buttons-left-bar")
@@ -64,6 +66,17 @@ const input_editar_os_orcamento = document.querySelector("#input-editar-os-orcam
 const input_editar_os_diagnostico = document.querySelector("#input-editar-os-diagnostico")
 const input_editar_os_status = document.querySelector("#input-editar-os-status")
 const input_editar_os_observacoes = document.querySelector("#input-editar-os-observacoes")
+
+// textos do modal visualizar Os
+const text_visualizar_os_equipamento_marca = document.querySelector("#text-marca-equipamento")
+const text_visualizar_os_equipamento_modelo = document.querySelector("#text-modelo-equipamento")
+const text_visualizar_os_equipamento_cor = document.querySelector("#text-cor-equipamento")
+const text_visualizar_os_equipamento_obs = document.querySelector("#text-observacoes-equipamento")
+const text_visualizar_os_orcamento = document.querySelector("#text-orcamento-os")
+const text_visualizar_os_diagnostico = document.querySelector("#text-diagnostico-os")
+const text_visualizar_os_obs = document.querySelector("#text-observacoes-os")
+const text_visualizar_os_cpf = document.querySelector("#text-cpf-os")
+const text_visualizar_os_status = document.querySelector("#text-status-os")
 
 // Para colocar o load na tabela
 const elementos_tabela = document.querySelectorAll(".tabela")
@@ -127,7 +140,7 @@ let atualiza_tabela = async () => {
         div_linha.classList.add("linha-tabela");
         div_linha.innerHTML = `
             <div class="campo_corpo_id">
-                <div><p>${i + 1}</p></div>
+                <div><p>${os.numero}</p></div>
             </div>
             <div class="campo_corpo_nome">
                 <p>${os.cliente_cpf_string}</p>
@@ -147,10 +160,15 @@ let atualiza_tabela = async () => {
         tabela.append(div_linha);
     });
 
-    // Eventos de edição e exclusão
+    // Eventos dos botões - abaixo
+
     document.querySelectorAll(".editar_os_modal_button").forEach((btn) => {
         btn.onclick = async () => {
             modal_editar_os.style.display = "flex";
+            const icone_loading = document.querySelector("#icone_loading_editar_os")
+            const conteudo_modal_editar_os = document.querySelector(".modal-editar-os-content")
+            conteudo_modal_editar_os.style.display = "none"
+            icone_loading.style.display = "block"
             const resposta_json = await fetch(`http://localhost:3030/api/ordens/procurar?id=${btn.id}`, {
                 method: "GET",
                 headers: {
@@ -164,6 +182,8 @@ let atualiza_tabela = async () => {
                 input_editar_os_diagnostico.value = os.diagnostico
                 input_editar_os_status.value = os.status
                 input_editar_os_observacoes.value = os.observacoes
+                conteudo_modal_editar_os.style.display = "flex"
+                icone_loading.style.display = "none"
                 id_os_editar = os._id
             }
             else {
@@ -175,6 +195,25 @@ let atualiza_tabela = async () => {
     document.querySelectorAll(".excluir_os_button").forEach((btn) => {
         btn.onclick = async () => {
             modal_excluir_os.style.display = "flex";
+            const resposta_json = await fetch(`http://localhost:3030/api/ordens/procurar?id=${btn.id}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                }
+            });
+            if (resposta_json.ok) {
+                const os = await resposta_json.json();
+                id_os_editar = os._id
+            } else {
+                return mostrarAlerta(cliente_json.mensagem);
+            }
+        };
+    });
+
+    document.querySelectorAll(".visualizar_os_button").forEach((btn) => {
+        btn.onclick = async () => {
+            modal_visualizar_os.style.display = "flex";
             const resposta_json = await fetch(`http://localhost:3030/api/ordens/procurar?id=${btn.id}`, {
                 method: "GET",
                 headers: {
@@ -277,7 +316,7 @@ procurar_cliente_input.addEventListener("keyup", e => {
             tabela.append(div_linha);
         });
 
-        // Eventos de edição e exclusão
+        // Eventos dos botões - abaixo
         document.querySelectorAll(".editar_os_modal_button").forEach((btn) => {
             btn.onclick = async () => {
                 modal_editar_os.style.display = "flex";
@@ -330,6 +369,13 @@ atualiza_tabela()
 const button_voltar_modal_editar = document.querySelector("#fechar_editar_os_button")
 button_voltar_modal_editar.addEventListener("click", () => {
     modal_editar_os.style.display = "none"
+    id_os_editar = undefined
+})
+
+// Fecha o modal de visualizar ordens
+const button_voltar_modal_visualizar = document.querySelector("#fechar_visualizar_os_button")
+button_voltar_modal_visualizar.addEventListener("click", () => {
+    modal_visualizar_os.style.display = "none"
     id_os_editar = undefined
 })
 

@@ -27,14 +27,16 @@ const OsControllers = {
                 status: req.body.status,
                 orcamento: req.body.orcamento,
                 diagnostico: req.body.diagnostico,
+                observacoes: req.body.observacoes
             };
+            console.log(os)
             const resposta_db = await OsModel.create(os);
             const Data = new Date()
             const dia = Data.getDate()
             const mes = Data.getMonth()
             const ano = Data.getFullYear()
             const data = `${dia}/${mes > 10 ? mes + 1 : "0" + mes + 1}/${ano}`
-            imprimir_pdf(nome_usuario, cpf_usuario, nome_equipamaento, marca_equipamento, data);
+            imprimir_pdf(nome_usuario, cpf_usuario, nome_equipamaento, marca_equipamento, data, os.numero);
             res.status(201).json({ mensagem: "Ordem de serviço criada com sucesso!" });
         } catch (err) {
             console.log(err);
