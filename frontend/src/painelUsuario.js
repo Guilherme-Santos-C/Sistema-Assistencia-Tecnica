@@ -25,7 +25,7 @@ buttons_bar[1].addEventListener("click", () => {
     window.location.href = "http://localhost:3030/html/painelOrdemServico.html"
 })
 buttons_bar[2].addEventListener("click", () => {
-    window.location.href = "http://localhost:3030/html/painelUsuario.html"
+    window.location.href = "http://localhost:3030/html/painelRelatorio.html"
 })
 
 let nome_usuario
@@ -477,6 +477,29 @@ button_excloi_cliente_modal.addEventListener("click", async () => {
     }
 })
 
+function abrirPdfParaImpressao(pdfBase64) {
+  const byteCharacters = atob(pdfBase64);
+  const byteNumbers = new Array(byteCharacters.length);
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+  const byteArray = new Uint8Array(byteNumbers);
+
+  const blob = new Blob([byteArray], { type: 'application/pdf' });
+  const blobUrl = URL.createObjectURL(blob);
+
+  const printWindow = window.open(blobUrl);
+  if (!printWindow) {
+    alert('Bloqueador de popups impediu a abertura da janela de impressão.');
+    return;
+  }
+  printWindow.onload = () => {
+    printWindow.focus();
+    printWindow.print();
+  };
+}
+
+
 const cadastrar_os_button = document.querySelector("#cadastrar_os_button")
 cadastrar_os_button.addEventListener("click", async () => {
     if(!input_cadastrar_os_marca.value) return mostrarAlerta("Preencha a marca do equipamento")
@@ -535,6 +558,7 @@ cadastrar_os_button.addEventListener("click", async () => {
             modal_criar_os_conteudo.style.display = "flex"
             icone_loading.style.display = "none"
             mostrarAlerta(os.mensagem)
+            abrirPdfParaImpressao(os.pdf)
             input_cadastrar_os_marca.value = ""
             input_cadastrar_os_modelo.value = ""
             input_cadastrar_os_cor.value = ""
@@ -542,6 +566,11 @@ cadastrar_os_button.addEventListener("click", async () => {
             input_cadastrar_os_orcamento.value = ""
             input_cadastrar_os_diagnostico.value = ""
             input_cadastrar_os_observacoes.value = ""
+        }else{
+            os = await os.json()
+            modal_criar_os_conteudo.style.display = "flex"
+            icone_loading.style.display = "none"
+            mostrarAlerta(os.mensagem)
         }
     }else{
         equipamento = await equipamento.json()

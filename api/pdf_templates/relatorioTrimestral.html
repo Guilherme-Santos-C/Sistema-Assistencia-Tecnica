@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Relatório</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 70px;
+            font-family: "Blauer nue";
+            height: 30vh;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 35px;
+        }
+
+        #div {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .table{
+            width: 160%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .table_tr_header {
+            background-color: beige;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+        }
+        .table_tr_header, .table_tr_body {
+            height: 50%;
+            display: grid;
+            place-items: center;
+            grid-template-columns: 33% 33% 33%;
+        }
+        .table_tr_body {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="data:image/svg+xml;base64,{{IMAGEM_BASE64}}" width="250" />
+        <h1>Relatório :tipo_relatorio</h1>
+        <p>De :data_inicio a :data_final :hora hrs</p>
+    </div>
+    <div id="div">
+        <div>
+            <h3>Clientes</h3>
+            <div class="table">
+                <div class="table_tr_header">
+                    <p>Total atendidos</p>
+                    <p>Novos Clientes</p>
+                    <p>Retorno de clientes antigos</p>
+                </div>
+                <div class="table_tr_body">
+                    <p>:totalClientes</p>
+                    <p>:clientesNovos (:clientesNovosPorcentagem)</p>
+                    <p>:ClientesAntigos (:clientesAntigosPorcentagem)</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3>Serviços</h3>
+            <div class="table">
+                <div class="table_tr_header">
+                    <p>Total de serviços</p>
+                    <p>Consertados com sucesso</p>
+                    <p>Não consertados</p>
+                    <p>Tempo médio para conserto</p>
+                </div>
+                <div class="table_tr_body">
+                    <p>:totalServiços</p>
+                    <p>:totalConsertados (:totalConsertadosPorcentagem)</p>
+                    <p>:totalNãoConsertados (:totalNãoConsertadosPorcentagem)</p>
+                    <p>:diasMedia dias :horasMedia horas</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Receita: :receitaTotal</h3>
+    </div>
+</body>
+</html>

@@ -27,14 +27,14 @@ const imprimir_pdf = async (nome, cpf, equipamento, marca, data, numero) => {
   await pagina.setContent(html, { waitUntil: 'networkidle0' });
 
   // Gera o PDF
-  await pagina.pdf({
+  let pdfBuffer = await pagina.pdf({
     path: 'certificado.pdf',
     format: 'A4',
     printBackground: true,
   });
-
+  pdfBuffer = Buffer.from(pdfBuffer)
   await navegador.close();
-  console.log('✅ PDF gerado com sucesso!');
+  return pdfBuffer
 }
 
 module.exports = imprimir_pdf

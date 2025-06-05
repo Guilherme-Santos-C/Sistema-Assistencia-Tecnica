@@ -49,6 +49,11 @@ main {
     width: 20px;
 }
 
+#imagem_relatorio_barra {
+    width: 22.5px;
+    height: 22.5px;
+}
+
 #icone-logout {
     cursor: pointer;
 }
@@ -219,6 +224,8 @@ main {
     display: flex;
     align-items: center;
     font-size: 1.8rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .campo_corpo_nome {

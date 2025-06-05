@@ -1,4 +1,3 @@
-import mostrarAlerta from "./mostrarAlerta.js"
 import tokens from "./tokens.js"
 
 if (! await tokens.logado()) {
@@ -37,7 +36,7 @@ buttons_bar[1].addEventListener("click", () => {
     window.location.href = "http://localhost:3030/html/painelOrdemServico.html"
 })
 buttons_bar[2].addEventListener("click", () => {
-    window.location.href = "http://localhost:3030/html/painelUsuario.html"
+    window.location.href = "http://localhost:3030/html/painelRelatorio.html"
 })
 
 // Redirecionamento dos botões do meio
@@ -49,5 +48,5 @@ buttons_meio[1].addEventListener("click", () => {
     window.location.href = "http://localhost:3030/html/painelOrdemServico.html"
 })
 buttons_meio[2].addEventListener("click", () => {
-    window.location.href = "http://localhost:3030/html/painelUsuario.html"
+    window.location.href = "http://localhost:3030/html/painelRelatorio.html"
 })

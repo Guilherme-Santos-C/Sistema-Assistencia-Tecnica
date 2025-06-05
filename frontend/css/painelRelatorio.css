@@ -52,11 +52,11 @@ main {
 #imagem_relatorio_barra {
     width: 22.5px;
     height: 22.5px;
+    background-color: #EAE5FF;
 }
 
-#imagem_relatorio_barra {
-    width: 22.5px;
-    height: 22.5px;
+#bar-icone-relatorio {
+    background-color: #EAE5FF;
 }
 
 #icone-logout {
@@ -71,7 +71,7 @@ main {
 
 .main-content {
     width: 85vw;
-    height: 90vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -79,7 +79,7 @@ main {
 }
 
 .up-side-bar {
-    height: 8.6vh;
+    height: 10vh;
     width: 85vw;
     background-color: var(--color-white);
     border-radius: 2rem;
@@ -92,7 +92,7 @@ main {
 }
 
 .down-side-content {
-    height: 78.4vh;
+    height: 75vh;
     width: 85vw;
     background-color: var(--color-white);
     border-radius: 2rem;
@@ -104,8 +104,10 @@ main {
 .left-side-content {
     display: flex;
     flex-direction: column;
+    padding-left: 8%;
     justify-content: space-around;
     gap: 3rem;
+    width: 50%;
 }
 
 .left-side-content .container-buttons {
@@ -119,11 +121,13 @@ main {
     justify-content: flex-start;
     gap: 1.5rem;
     height: 4.4rem;
-    width: fit-content;
+    width: 50%;
     border-radius: 1rem;
-    padding: 2rem 2rem 2rem 1rem;
     font-size: 1.8rem;
     cursor: pointer;
+    padding-left: 1rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
 }
 
 .left-side-content .container-buttons button img {
@@ -132,13 +136,23 @@ main {
 }
 
 .down-side-content h1 {
-    font-size: 4.5rem;
+    font-size: 7.5rem;
     font-weight: 600;
-    line-height: 4.5rem;
+    line-height: 6.2rem;
 }
 
 .down-side-content h1 span {
     color: var(--color-primary);
 }
 
+.right-side-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding-right: 10%;
+}
 
+.right-side-content img {
+    width: 120%;
+}

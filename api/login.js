@@ -25,7 +25,7 @@ const login = async (req, res) => {
             }
             if (!verifica_senha) return res.status(400).json({ mensagem: "Senha inválida" })
             const token = jwt.sign(
-                {id: Admin._id, nome: "Admin", role: "admin" },
+                {id: Admin._id, nome: "Admin", role: "admin"},
                 "lakshdj80b@dpks5ao",
                 { expiresIn: "8h" })
             

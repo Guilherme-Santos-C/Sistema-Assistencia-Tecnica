@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Protocolo de saída do equipamento</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 70px;
+            font-family: "Blauer nue";
+            height: 30vh;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 35px;
+        }
+
+        p {
+            text-align: justify;
+            font-size: 20px;
+        }
+
+        #div {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="data:image/svg+xml;base64,{{IMAGEM_BASE64}}" width="250" />
+        <h1>Termo de entrega do equipamento</h1>
+        <p>Número da ordem: :numero</p>
+    </div>
+    <div id="div">
+        <div>
+            <p>
+                Eu, :nome, portador(a) do CPF n° :cpf, residente e domiciliado(a) nesta cidade, declaro que o
+                equipamento
+                :equipamento da :marca foi entregue a :nomeCliente do CPF n° :cpfCliente da maneira
+                na qual chegou. O mesmo foi testado e aprovado na presença do cliente.
+            </p>
+            <p>Assino abaixo, para que produza a legalidade necessária.</p>
+        </div>
+        <hr style="border: none; border-top: 2px solid black; width: 600px; margin-top: 280px;" />
+        <p style="margin-left: 10px; font-size: 15px;">Assinatura do técnico</p>
+        <hr style="border: none; border-top: 2px solid black; width: 600px; margin-top: 120px;" />
+        <p style="margin-left: 10px; font-size: 15px;">Assinatura do cliente</p>
+    </div>
+</body>
+</html>

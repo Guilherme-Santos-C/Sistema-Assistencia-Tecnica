@@ -1,5 +1,6 @@
 const express = require('express');
 const { verificaTokenAdmin, verificaTokenUser } = require("./middlewares/authMiddleware");
+const imprimir_pdf = require("./pdfSaida")
 const { validaTokenAdmin, validaTokenUser} = require("./validaToken");
 const login = require("./login")
 const router = express.Router();
@@ -50,5 +51,8 @@ router.post("/login", login)
 // Verifica token
 router.get("/verificaTokenUser", validaTokenUser)
 router.get("/verificaTokenAdmin", validaTokenAdmin)
+
+// PDF de saída
+router.post("/protocoloDeSaida", verificaTokenUser, imprimir_pdf)
 
 module.exports = router;

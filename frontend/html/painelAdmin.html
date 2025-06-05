@@ -3,15 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refefinir senha</title>
-    <link rel="stylesheet" href="../css/redefinir.css">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="../css/painelUsuario.css">
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="shortcut icon" type="image/jpg" href="../images/e_grande_icone.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="../images/e_grande_icone.png" />
 </head>
+
 <body>
+    <div class="fundo-modal-logout">
+        <div class="modal-logout">  
+            <div class="modal-logout-content">
+                <p class="modal-logout-p">Você deseja sair ?</p>
+                <div>
+                    <button class="modal-logout-button-nao">Não</button>
+                    <button class="modal-logout-button-sair">Sim, desejo sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fundo-modal-criar-cliente">
+        <div class="modal-criar-cliente">
+            <img src="../images/loading.svg" style="width: 20%;" alt="Animação que representa o carregamento da página" id="icone_loading">
+            <div class="modal-editar-cliente-header">
+                <h2>Editar informações <br>do cliente</h2>
+                <button id="fechar_cadastrar_clientes_button">voltar<img src="../images/voltar.svg" alt="seta de voltar"></button>
+            </div>
+            <div class="modal-criar-cliente-content">
+                <div class="left-side-content">
+                    <div class="container-input">
+                        <label for="input-cadastrar-cliente-nome">Nome</label>
+                        <input type="text" autocomplete="off" placeholder="Digite o nome do cliente" id="input-cadastrar-cliente-nome" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="input-cadastrar-cliente-cpf">Cpf</label>
+                        <input type="text" autocomplete="off" placeholder="Digite o cpf do cliente" id="input-cadastrar-cliente-cpf" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="input-cadastrar-cliente-endereco">Endereço</label>
+                        <input type="text" autocomplete="off" placeholder="Digite o endereço do cliente" id="input-cadastrar-cliente-endereco" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="input-cadastrar-cliente-telefone">telefone</label>
+                        <input type="text" autocomplete="off" placeholder="Digite o telefone do cliente" id="input-cadastrar-cliente-telefone" required>
+                    </div>
+                    <button id="criar-cliente-button">Cadastrar!</button>
+                </div>
+                <div class="right-side-content">
+                    <img src="../images/ilustração_cadastrar_clientes.svg" alt="ilustração de um homem com pastas">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fundo-modal-editar-cliente">
+        <div class="modal-editar-cliente">
+            <img src="../images/loading.svg" style="width: 20%;" alt="Animação que representa o carregamento da página" id="icone_loading_editar">
+            <div class="modal-editar-cliente-header">
+                <h2 id="h2_editar">Editar informações <br>do cliente</h2>
+                <button id="fechar_editar_clientes_button">voltar<img src="../images/voltar.svg" alt="seta de voltar"></button>
+            </div>
+            <div class="modal-editar-cliente-content">
+                <div class="left-side-content">
+                    <div class="container-input">
+                        <label for="input-editar-cliente-nome">Nome</label>
+                        <input type="text" autocomplete="off" placeholder="Digite o nome do cliente" id="input-editar-cliente-nome" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="input-editar-cliente-cpf">Cpf</label>
+                        <input type="text" autocomplete="off" placeholder="Digite o cpf do cliente" id="input-editar-cliente-cpf" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="input-editar-cliente-endereco">Endereço</label>
+                        <input type="text" autocomplete="off" placeholder="Digite o endereço do cliente" id="input-editar-cliente-endereco" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="input-editar-cliente-telefone">telefone</label>
+                        <input type="text" autocomplete="off" placeholder="Digite o telefone do cliente" id="input-editar-cliente-telefone" required>
+                    </div>
+                    <button id="editar-cliente-button">Salvar!</button>
+                </div>
+                <div class="right-side-content">
+                    <img src="../images/ilustracao_editar_cliente.svg" alt="ilustração de uma mão escrevendo">
+                    <!-- <button >Voltar</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fundo-modal-excluir">
+        <div class="modal-excluir">
+            <div class="modal-excluir-content">
+                <p class="modal-excluir-p">Você deseja exluir esse cliente e suas ordens de serviço?<br>(esta ação é irreversível)</p>
+                <div>
+                    <button class="modal-excluir-button-nao">Não</button>
+                    <button class="modal-excluir-button-sair">Sim, desejo excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fundo-modal-criar-os">
+        <div class="modal-criar-os">
+            <img src="../images/loading.svg" style="width: 20%;" alt="Animação que representa o carregamento da página" id="icone_loading_os">
+            <div class="modal-criar-os-content">
+                <div class="container-titulo-modal-os">
+                    <h2>Cadastrar nova ordem de serviço</h2>
+                    <button id="button_voltar_modal_os">Voltar <img src="../images/voltar.svg" alt="seta de retornar"></button>
+                </div>
+                <div class="conatainer-inputs-modal-os">
+                    <div class="left-side-modal-os">
+                        <h3>Informações do equipamento</h3>
+                        <div class="container-input">
+                            <label for="input-editar-os-marca">marca</label>
+                            <input type="text" autocomplete="off" placeholder="informe a marca do equipamento" id="input-editar-os-marca" required>
+                        </div>
+                        <div class="container-input">
+                            <label for="input-editar-os-modelo">Modelo</label>
+                            <input type="text" autocomplete="off" placeholder="informe o modelo do equipamento" id="input-editar-os-modelo" required>
+                        </div>
+                        <div class="container-input">
+                            <label for="input-editar-os-cor">Cor</label>
+                            <input autocomplete="off" id="input-editar-os-cor" placeholder="informe a cor do equipamento" required>
+                        </div>
+                        <div class="container-input">
+                            <label for="input-editar-os-observacoes-equipamento">Observações do equipamento</label>
+                            <textarea autocomplete="off" id="input-editar-os-observacoes-equipamento" placeholder="informe alguma observação sobre o equipamento" required></textarea>
+                        </div>
+                    </div>
+                    <div class="linha-meio-modal-os"></div>
+                    <div class="rigth-side-modal-os">
+                        <h3>Informações da OS</h3>
+                        <div class="container-input">
+                            <label for="input-editar-os-orcamento">Orçamento</label>
+                            <input type="text" autocomplete="off" placeholder="Digite o orçamento do serviço" id="input-editar-os-orcamento" required>
+                        </div>
+                        <div class="container-input">
+                            <label for="input-editar-os-diagnostico">Diagnóstico</label>
+                            <textarea autocomplete="off" placeholder="Informe o diagnóstico do equipamento" id="input-editar-os-diagnostico" required></textarea>
+                        </div>
+                        <div class="container-input">
+                            <label for="input-editar-os-observacoes">Observações do serviço</label>
+                            <textarea autocomplete="off" id="input-editar-os-observacoes" placeholder="Informe alguma observação sobre o serviço" required></textarea>
+                        </div>
+                        <button id="cadastrar_os_button">Cadastrar OS!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <main>
+        <div class="left-side-bar">
+            <img src="../images/Logo.svg" alt="logo icone" class="logo">
+            <div class="left-side-bar-linha"></div>
+            <div class="container-buttons-left-bar">
+                <button class="buttons-left-bar" id="bar-icone-clientes"><img src="../images/Clientes.svg" alt="icone de clientes"></button>
+                <button class="buttons-left-bar"><img src="../images/Ordem de serviço.svg" alt="icone de checklist"></button>
+                <button class="buttons-left-bar"><img src="../images/Pesquisa.svg" alt="icone de pesquisa"></button>
+            </div>
+            <div class="left-side-bar-linha"></div>
+            <img src="../images/Logout.svg" alt="icone logout" id="icone-logout">
+        </div>
+        <div class="main-content">
+            <div class="up-side-bar">
+                <p>Clientes</p>
+                <div class="div-input-button-upbar">
+                    <div class="container_input_pesquisa">
+                        <div>
+                            <img src="../images/lupa_cinza.svg" alt="icone de lupa">
+                        </div>
+                        <input autocomplete="off" type="text" placeholder="Pesquisar Cliente (Cpf ou Nome)" id="pesquisa_input">
+                    </div>
+                    <button id="button-adicionar-cliente-modal"><img src="../images/cruz_branca.svg" alt="símbolo de adição">Adicionar Cliente</button>
+                </div>
+                <p id="nome_admin">Admin</p>
+            </div>
+            <div class="down-side-content">
+                <div class="container-topo-tabela">
+                    <div class="campo_topo_id">
+                        <p>id</p>
+                    </div>
+                    <div class="campo_topo_nome">
+                        <p>Nome completo</p>
+                    </div>
+                    <div class="campo_topo_cpf">
+                        <p>Cpf</p>
+                    </div>
+                    <div class="campo_topo_telefone">
+                        <p>Telefone</p>
+                    </div>
+                    <div class="campo_top_modificar">
+                        <p>Modificar</p>
+                    </div>
+                </div>
+                <div class="lista_tabela"></div>
+                <div class="container-corpo-tabela">
+                    <!-- Tabela, carregada com js--> 
+                </div>
+            </div>
+        </div>
     </main>
     <img src="../images/loading.svg" style="width: 30%;" alt="Animação que representa o carregamento da página" id="icone_loading">
-    <script type="module" src="../src/redefinirSenha.js"></script>
+    <script type="module" src="../src/painelUsuario.js"></script>
 </body>
+
 </html>
