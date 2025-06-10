@@ -1,7 +1,5 @@
 import tokens from "./tokens.js"
 import mostrarAlerta from "./mostrarAlerta.js"
-import mascara_cpf from "./mascara_cpf.js"
-import mascara_telefone from "./mascara_tel.js"
 
 // const div_senha_input = document.querySelector(".container_input_pesquisa")
 // const input_cliente = document.querySelector("#pesquisa_input")
@@ -262,7 +260,7 @@ let atualiza_tabela = async () => {
                         text_visualizar_os_equipamento_modelo.innerText = equipamento.modelo
                         text_visualizar_os_equipamento_obs.innerText = equipamento.observacoes == "" ? "Nenhuma" : equipamento.observacoes
                         text_visualizar_os_obs.innerText = os.observacoes == "" ? "Nenhuma" : os.observacoes
-                        text_visualizar_os_orcamento.innerText = os.orcamento == null ? "Sem orçamento" : os.orcamento + " R$"
+                        text_visualizar_os_orcamento.innerText = os.orcamento == null ? "Sem orçamento" :  "R$ " + os.orcamento
                         text_visualizar_os_status.innerText = os.status
                         content_modal_visualizar_os.style.display = "flex"
                         icone_load_visualizar_os.style.display = "none"
@@ -288,59 +286,64 @@ procurar_cliente_input.addEventListener("keyup", e => {
     clearTimeout(timer); // limpa o último timer
     timer = setTimeout(async () => {
         // Aqui vai o que você quer fazer depois do delay
-        let resposta_api = await fetch(`http://localhost:3030/api/ordens?busca=${procurar_cliente_input.value}`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
-            }
-        })
-        if (!resposta_api.ok) return;
+        icone_load_tabela.style.display = "block"
+    elementos_tabela.forEach((e) => {
+        e.style.display = "none"
+    })
+    let resposta_api = await fetch(`http://localhost:3030/api/ordens?busca=${procurar_cliente_input.value}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+        }
+    });
 
-        let OSs = await resposta_api.json();
+    if (!resposta_api.ok) return;
 
-        // Substituir cliente e equipamento por strings legíveis
-        OSs = await Promise.all(OSs.map(async (os) => {
-            let [clienteResp, equipamentoResp] = await Promise.all([
-                fetch(`http://localhost:3030/api/clientes/procurar?id=${os.cliente}`, {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
-                    }
-                }),
-                fetch(`http://localhost:3030/api/equipamentos/procurar?id=${os.equipamento}`, {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
-                    }
-                })
-            ]);
+    let OSs = await resposta_api.json();
 
-            const cliente = await clienteResp.json();
-            const equipamento = await equipamentoResp.json();
+    // Substituir cliente e equipamento por strings legíveis
+    OSs = await Promise.all(OSs.map(async (os) => {
+        let [clienteResp, equipamentoResp] = await Promise.all([
+            fetch(`http://localhost:3030/api/clientes/procurar?id=${os.cliente}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                }
+            }),
+            fetch(`http://localhost:3030/api/equipamentos/procurar?id=${os.equipamento}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                }
+            })
+        ]);
 
-            return {
-                ...os,
-                cliente_cpf_string: cliente.cpf,
-                equipamento_nome_string: equipamento.modelo,
-                createdAt: new Date(os.createdAt)
-            };
-        }));
+        const cliente = await clienteResp.json();
+        const equipamento = await equipamentoResp.json();
 
-        // Ordenar por data de criação
-        OSs.sort((a, b) => b.createdAt - a.createdAt);
+        return {
+            ...os,
+            cliente_cpf_string: cliente.cpf,
+            equipamento_nome_string: equipamento.modelo,
+            createdAt: new Date(os.createdAt)
+        };
+    }));
 
-        const tabela = document.querySelector(".container-corpo-tabela");
-        tabela.innerHTML = "";
+    // Ordenar por data de criação
+    OSs.sort((a, b) => b.createdAt - a.createdAt);
 
-        OSs.forEach((os, i) => {
-            const div_linha = document.createElement("div");
-            div_linha.classList.add("linha-tabela");
-            div_linha.innerHTML = `
+    const tabela = document.querySelector(".container-corpo-tabela");
+    tabela.innerHTML = "";
+
+    OSs.forEach((os, i) => {
+        const div_linha = document.createElement("div");
+        div_linha.classList.add("linha-tabela");
+        div_linha.innerHTML = `
             <div class="campo_corpo_id">
-                <div><p>${i + 1}</p></div>
+                <div><p>${os.numero}</p></div>
             </div>
             <div class="campo_corpo_nome">
                 <p>${os.cliente_cpf_string}</p>
@@ -352,57 +355,124 @@ procurar_cliente_input.addEventListener("keyup", e => {
                 <p>${os.status}</p>
             </div>
             <div class="campo_corpo_modificar">
-                <button class="ordem_servico_button">Visualizar</button>
-                ${os.status == "Entregue" || os.status == "Consertado e entregue" ? null :  `<button class="editar_os_modal_button" id="${os._id}"><img src="../images/editar_simbolo.svg" alt="icone de lápis"></button>`} 
+                <button class="visualizar_os_button" id="${os._id}">Visualizar</button>
+                ${os.status == "Entregue" || os.status == "Consertado e entregue" ? "" :  `<button class="editar_os_modal_button" id="${os._id}"><img src="../images/editar_simbolo.svg" alt="icone de lápis"></button>`} 
                 <button class="excluir_os_button" id="${os._id}"><img src="../images/icone_lixeira.svg" alt="icone de lixeira"></button>
             </div>
         `;
-            tabela.append(div_linha);
-        });
+        tabela.append(div_linha);
+    });
 
-        // Eventos dos botões - abaixo
-        document.querySelectorAll(".editar_os_modal_button").forEach((btn) => {
-            btn.onclick = async () => {
-                modal_editar_os.style.display = "flex";
-                const resposta_json = await fetch(`http://localhost:3030/api/ordens/procurar?id=${btn.id}`, {
+    // Eventos dos botões - abaixo
+
+    document.querySelectorAll(".editar_os_modal_button").forEach((btn) => {
+        btn.onclick = async () => {
+            modal_editar_os.style.display = "flex";
+            const icone_loading = document.querySelector("#icone_loading_editar_os")
+            const conteudo_modal_editar_os = document.querySelector(".modal-editar-os-content")
+            conteudo_modal_editar_os.style.display = "none"
+            icone_loading.style.display = "block"
+            const resposta_json = await fetch(`http://localhost:3030/api/ordens/procurar?id=${btn.id}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                }
+            });
+            if (resposta_json.ok) {
+                const os = await resposta_json.json();
+                input_editar_os_orcamento.value = os.orcamento
+                input_editar_os_diagnostico.value = os.diagnostico
+                input_editar_os_status.value = os.status
+                input_editar_os_observacoes.value = os.observacoes
+                conteudo_modal_editar_os.style.display = "flex"
+                icone_loading.style.display = "none"
+                os_editar = os
+            }
+            else {
+                return mostrarAlerta(os);
+            }
+        };
+    });
+
+    document.querySelectorAll(".excluir_os_button").forEach((btn) => {
+        btn.onclick = async () => {
+            modal_excluir_os.style.display = "flex";
+            const resposta_json = await fetch(`http://localhost:3030/api/ordens/procurar?id=${btn.id}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                }
+            });
+            if (resposta_json.ok) {
+                const os = await resposta_json.json();
+                os_editar = os
+            } else {
+                return mostrarAlerta(cliente_json.mensagem);
+            }
+        };
+    });
+
+    document.querySelectorAll(".visualizar_os_button").forEach((btn) => {
+        btn.onclick = async () => {
+            modal_visualizar_os.style.display = "flex";
+            content_modal_visualizar_os.style.display = "none"
+            icone_load_visualizar_os.style.display = "block"
+            const resposta_json_os = await fetch(`http://localhost:3030/api/ordens/procurar?id=${btn.id}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                }
+            });
+            if (resposta_json_os.ok) {
+                const os = await resposta_json_os.json();
+                os_editar = os
+                const resposta_json_cliente = await fetch(`http://localhost:3030/api/clientes/procurar?id=${os.cliente}`, {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
                     }
                 });
-                if (resposta_json.ok) {
-                    const os = await resposta_json.json();
-                    input_editar_os_orcamento.value = os.orcamento
-                    input_editar_os_diagnostico.value = os.diagnostico
-                    input_editar_os_status.value = os.status
-                    input_editar_os_observacoes.value = os.observacoes
-                    os_editar = os
-                }
-                else {
-                    return mostrarAlerta(os);
-                }
-            };
-        });
-
-        document.querySelectorAll(".excluir_os_button").forEach((btn) => {
-            btn.onclick = async () => {
-                moda_excluir_cliente.style.display = "flex";
-                const resposta = await fetch(`http://localhost:3030/api/clientes/procurar?id=${btn.id}`, {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                if (resposta_json_cliente.ok) {
+                    const cliente = await resposta_json_cliente.json();
+                    cliente_editar = cliente
+                    const resposta_json_equipamento = await fetch(`http://localhost:3030/api/equipamentos/procurar?id=${os.equipamento}`, {
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                        }
+                    });
+                    if (resposta_json_equipamento.ok) {
+                        const equipamento = await resposta_json_equipamento.json()
+                        os_editar = os
+                        equipamento_editar = equipamento
+                        text_visualizar_os_cpf.innerText = cliente.cpf
+                        text_visualizar_os_diagnostico.innerText = os.diagnostico == "" ? "Nenhum" : os.diagnostico
+                        text_visualizar_os_equipamento_cor.innerText = equipamento.cor
+                        text_visualizar_os_equipamento_marca.innerText = equipamento.marca
+                        text_visualizar_os_equipamento_modelo.innerText = equipamento.modelo
+                        text_visualizar_os_equipamento_obs.innerText = equipamento.observacoes == "" ? "Nenhuma" : equipamento.observacoes
+                        text_visualizar_os_obs.innerText = os.observacoes == "" ? "Nenhuma" : os.observacoes
+                        text_visualizar_os_orcamento.innerText = os.orcamento == null ? "Sem orçamento" :  "R$ " + os.orcamento
+                        text_visualizar_os_status.innerText = os.status
+                        content_modal_visualizar_os.style.display = "flex"
+                        icone_load_visualizar_os.style.display = "none"
+                        return "";
                     }
-                });
-                const cliente_json = await resposta.json();
-                if (resposta.ok) {
-                    cliente_editar = cliente_json._id;
-                } else {
-                    return mostrarAlerta(cliente_json.mensagem);
                 }
-            };
-        });
+            }
+            return mostrarAlerta("Erro interno");
+        };
+    });
+    icone_load_tabela.style.display = "none"
+    elementos_tabela.forEach((e) => {
+        e.style.display = "flex"
+    })
+    elementos_tabela[0].style.display = "grid"
 
     }, 600); // 500ms de delay
 })

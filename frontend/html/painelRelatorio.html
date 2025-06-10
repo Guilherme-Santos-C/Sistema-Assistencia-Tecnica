@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel central</title>
-    <link rel="stylesheet" href="../css/painelRelatorio.css">
+    <title>Painel relatório</title>
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="shortcut icon" type="image/jpg" href="../images/e_grande_icone.png"/>
+    <link rel="stylesheet" href="../css/painelRelatorio.css">
+    <link rel="shortcut icon" type="image/jpg" href="../images/e_grande_icone.png" />
 </head>
+
 <body>
     <div class="fundo-modal-logout">
         <div class="modal-logout">
@@ -20,14 +22,42 @@
             </div>
         </div>
     </div>
+    <div class="fundo-modal-relatorio-personalizado">
+        <div class="modal-relatorio-personalizado">
+            <img src="../images/loading.svg" style="width: 20%; display: none;" id="icone_loading_relatorio_modal">
+            <div class="modal-relatorio-personalizado-content">
+                <div class="modal-relatorio-personalizado-haeder">
+                    <h1>Gerar relatório de personalizado</h1>
+                    <button id="fechar_modal_relatorio_personalizado">voltar<img src="../images/voltar.svg"
+                            alt="seta de voltar"></button>
+                </div>
+                <div class="modal-relatorio-personalizado-main-content">
+                    <div class="modal-relatorio-container-input">
+                        <label for="dataInicio">Data de início</label>
+                        <input type="date" name="dataInicio" id="dataInicio">
+                    </div>
+                    <div class="linha-modal-relatorio"></div>
+                    <div class="modal-relatorio-container-input">
+                        <label for="dataFinal">Data final</label>
+                        <input type="date" name="dataFinal" id="dataFinal">
+                    </div>
+                </div>
+                <div class="modal-relatorio-button-gerar-container">
+                    <button id="button-gera-relatorio-personalizado">Gerar relatório</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <main>
         <div class="left-side-bar">
             <img src="../images/Logo.svg" alt="logo icone" class="logo">
             <div class="left-side-bar-linha"></div>
             <div class="container-buttons-left-bar">
                 <button class="buttons-left-bar"><img src="../images/Clientes.svg" alt="icone de clientes"></button>
-                <button class="buttons-left-bar"><img src="../images/Ordem de serviço.svg" alt="icone de checklist"></button>
-                <button class="buttons-left-bar" id="bar-icone-relatorio"><img src="../images/Relatórios.svg" alt="icone de pesquisa" id="imagem_relatorio_barra"></button>
+                <button class="buttons-left-bar"><img src="../images/Ordem de serviço.svg"
+                        alt="icone de checklist"></button>
+                <button class="buttons-left-bar" id="bar-icone-relatorio"><img src="../images/Relatórios.svg"
+                        alt="icone de pesquisa" id="imagem_relatorio_barra"></button>
             </div>
             <div class="left-side-bar-linha"></div>
             <img src="../images/Logout.svg" alt="icone logout" id="icone-logout">
@@ -38,12 +68,17 @@
                 <p id="nome_usuario">Usuário</p>
             </div>
             <div class="down-side-content">
+                <img src="../images/loading.svg" style="width: 20%;"
+                    alt="Animação que representa o carregamento da página" id="icone_loading_relatorio">
                 <div class="left-side-content">
                     <h1>Gerar<br><span>relatório</span></h1>
                     <div class="container-buttons">
-                        <button class="buttons-main-div"><img src="../images/seta_button.svg" alt="icone de clientes">Relatório trimestral</button>
-                        <button class="buttons-main-div"><img src="../images/seta_button.svg" alt="icone de checklist">Relatório semestral</button>
-                        <button class="buttons-main-div"><img src="../images/seta_button.svg" alt="icone de pesquisa">Relatório personalizado</button>
+                        <button class="buttons-main-div" id="gera_relatorio_trimestral"><img
+                                src="../images/seta_button.svg" alt="icone de clientes">Relatório trimestral</button>
+                        <button class="buttons-main-div" id="gera_relatorio_semestral"><img
+                                src="../images/seta_button.svg" alt="icone de checklist">Relatório semestral</button>
+                        <button class="buttons-main-div" id="gera_relatorio_personalizado"><img
+                                src="../images/seta_button.svg" alt="icone de pesquisa">Relatório personalizado</button>
                     </div>
                 </div>
                 <div class="right-side-content">
@@ -52,7 +87,7 @@
             </div>
         </div>
     </main>
-    <img src="../images/loading.svg" style="width: 30%;" alt="Animação que representa o carregamento da página" id="icone_loading">
-    <script type="module" src="../src/painelCentral.js"></script>
+    <script type="module" src="../src/relatorio.js"></script>
 </body>
+
 </html>

@@ -154,19 +154,8 @@ const OsControllers = {
             console.log(err)
             res.status(500).json({ mensagem: "Erro interno!" })
         }
-    },
-    listar_filtro_data: async (req, res) => {
-        let osS = await OsModel.find({
-            createdAt: {
-            $gte: req.body.dataInicio,
-            $lt: req.body.dataFinal
-        }
-        })
-        if(!osS){
-            return res.status(404).json({mensagem: "Nenhuma Ordem encontrada"})
-        }
-        return res.status(200).json({osS})
     }
 };
 
 module.exports = OsControllers;
+

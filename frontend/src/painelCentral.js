@@ -26,7 +26,6 @@ if (localStorage.getItem("nome") != null && sessionStorage.getItem("nome") == nu
 }
 document.querySelector("#nome_usuario").innerText = nome_usuario.split(" ")[0]
 
-
 // Redirecionamento dos botões da barra lateral
 const buttons_bar = document.querySelectorAll(".buttons-left-bar")
 buttons_bar[0].addEventListener("click", () => {

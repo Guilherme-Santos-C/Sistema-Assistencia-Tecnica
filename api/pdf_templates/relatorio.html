@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Relatório</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 70px;
+            font-family: "Blauer nue";
+            gap: 30px;
+        }
+
+        h1 {
+            font-size: 35px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80vw;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #8800FF;
+            color: white;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 10px 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="data:image/svg+xml;base64,{{IMAGEM_BASE64}}" width="250" />
+        <h1>Relatório :tipo_relatorio</h1>
+        <p>De :data_inicio a :data_final</p>
+    </header>
+    <div>
+        <h2>Clientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Clientes atendidos</th>
+                    <th>Clientes novos</th>
+                    <th>Clientes antigos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>:totalClientes</td>
+                    <td>:clientesNovos (:clientesNovosPorcentagem)</td>
+                    <td>:clientesAntigos (:clientesAntigosPorcentagem)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h2>Serviços</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Equipamentos recebidos</th>
+                    <th>consertados</th>
+                    <th>não consertados</th>
+                    <th>em conserto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>:totalServicos</td>
+                    <td>:totalConsertados (:totalConsertadosPorcentagem)</td>
+                    <td>:totalNaoConsertados (:totalNaoConsertadosPorcentagem)</td>
+                    <td>:totalEmConserto (:totalEmConsertoPorcentagem)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3></h3>
+    <h3>Receita total: :receitaTotal</h3>
+    <h3>Tempo médio de conserto: :tempoMedioConserto</h3>
+</body>
+</html>

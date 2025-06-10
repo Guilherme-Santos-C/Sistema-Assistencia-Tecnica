@@ -15,7 +15,8 @@ const login = async (req, res) => {
                     {id: Admin._id, nome: "Admin", role: "admin" },
                     "lakshdj80b@dpks5ao",
                     { expiresIn: "8h" })
-                return res.status(200).json({ mensagem: "Sucesso no login", token })
+                console.log("1")
+                return res.status(200).json({ mensagem: "Sucesso no login", token, nome: "Admin", cpf: "Admin" })
             }
             try{
                 await bcrypt.compare(req.body.password, Admin.senha)
@@ -28,7 +29,7 @@ const login = async (req, res) => {
                 {id: Admin._id, nome: "Admin", role: "admin"},
                 "lakshdj80b@dpks5ao",
                 { expiresIn: "8h" })
-            
+            console.log("2")
             res.status(200).json({ mensagem: "Sucesso no login", token })
         }else {
             const User = await UserModel.findOne({email: req.body.user})

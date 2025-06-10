@@ -40,11 +40,14 @@ const logar = async () => {
         }else{
             tokens.salvarSession(resposta.token, resposta.nome, resposta.cpf)
         }
-        window.location.replace("http://localhost:3030/html/painelCentral.html")
+        if(resposta.nome == "Admin"){
+            window.location.replace("http://localhost:3030/html/painelAdmin.html")
+        }else{
+            window.location.replace("http://localhost:3030/html/painelCentral.html")
+        }
     } else {
         resposta = await resposta.json()
         tela_carregamento.fechar()
-        console.log(resposta)
         mostrarAlerta(resposta.mensagem)
     }
 }

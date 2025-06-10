@@ -1,6 +1,7 @@
 const express = require('express');
 const { verificaTokenAdmin, verificaTokenUser } = require("./middlewares/authMiddleware");
-const imprimir_pdf = require("./pdfSaida")
+const imprimir_pdf_saida = require("./pdfSaida")
+const imprimir_pdf_relatorio = require("./pdfRelatorio")
 const { validaTokenAdmin, validaTokenUser} = require("./validaToken");
 const login = require("./login")
 const router = express.Router();
@@ -53,6 +54,11 @@ router.get("/verificaTokenUser", validaTokenUser)
 router.get("/verificaTokenAdmin", validaTokenAdmin)
 
 // PDF de saída
-router.post("/protocoloDeSaida", verificaTokenUser, imprimir_pdf)
+router.post("/protocoloDeSaida", verificaTokenUser, imprimir_pdf_saida)
+router.post("/relatorio", verificaTokenUser, imprimir_pdf_relatorio)
+
+// Listar clientes e ordens com filto de data
+router.post("/ordens/data", verificaTokenUser)
+router.post("/clientes/data", verificaTokenUser)
 
 module.exports = router;

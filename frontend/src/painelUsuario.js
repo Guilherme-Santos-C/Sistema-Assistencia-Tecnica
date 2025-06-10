@@ -298,15 +298,15 @@ procurar_cliente_input.addEventListener("keyup", e => {
             }
         })
         if (resposta_api.ok) {
-            resposta_api = await resposta_api.json()
-            const clientes = resposta_api.resposta_db
-            console.log(clientes)
-            const tabela = document.querySelector(".container-corpo-tabela")
-            tabela.innerHTML = ""
-            clientes.forEach((cliente, i) => {
-                const div_linha = document.createElement("div")
-                div_linha.classList.add("linha-tabela")
-                div_linha.innerHTML = `
+        resposta_api = await resposta_api.json()
+        const clientes = resposta_api.resposta_db
+        console.log(clientes)
+        const tabela = document.querySelector(".container-corpo-tabela")
+        tabela.innerHTML = ""
+        clientes.forEach((cliente, i) => {
+            const div_linha = document.createElement("div")
+            div_linha.classList.add("linha-tabela")
+            div_linha.innerHTML = `
                 <div class="campo_corpo_id">
                     <div>
                         <p>${i + 1}</p>
@@ -322,15 +322,15 @@ procurar_cliente_input.addEventListener("keyup", e => {
                     <p>${cliente.telefone}</p>
                 </div>
                 <div class="campo_corpo_modificar">
-                    <button class="ordem_servico_button_modal">Ordens de serviço</button>
+                    <button class="ordem_servico_button_modal" id="${cliente._id}">Ordens de serviço</button>
                     <button class="editar_cliente_modal_button" id="${cliente._id}"><img src="../images/editar_simbolo.svg" alt="icone de lápis"></button>
                     <button class="excluir_cliente_button" id="${cliente._id}"><img src="../images/icone_lixeira.svg" alt="icone de lixeira"></button>
                 </div>
             `
-                tabela.append(div_linha)
-            });
-            const button_editar_cliente_modal = document.querySelectorAll(".editar_cliente_modal_button")
-            button_editar_cliente_modal.forEach((e) => {
+            tabela.append(div_linha)
+        });
+        const button_editar_cliente_modal = document.querySelectorAll(".editar_cliente_modal_button")
+        button_editar_cliente_modal.forEach((e) => {
             e.onclick = async () => {
                 moda_editar_cliente.style.display = "flex"
                 let resposta_api = await fetch(`http://localhost:3030/api/clientes/procurar?id=${e.id}`, {
@@ -376,14 +376,25 @@ procurar_cliente_input.addEventListener("keyup", e => {
         })
         const button_ordem_modal = document.querySelectorAll(".ordem_servico_button_modal")
         button_ordem_modal.forEach((e) => {
-            e.addEventListener("click",() => {
+            e.addEventListener("click", async () => {
                 modal_cadastrar_os.style.display = "flex"
+                let resposta_api = await fetch(`http://localhost:3030/api/clientes/procurar?id=${e.id}`, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                    }
+                })
+                if (resposta_api.ok) {
+                    let cliente_json = await resposta_api.json()
+                    id_cliente_editar = cliente_json._id
+                } else {
+                    let cliente_json = await resposta_api.json()
+                    return mostrarAlerta(cliente_json.mensagem)
+                }
             })
         })
-        }else{
-            resposta_api = await resposta_api.json()
-            console.log(resposta_api)
-        }
+    }
     }, 600); // 500ms de delay
 })
 
@@ -428,8 +439,8 @@ button_salva_edicao_modal.addEventListener("click", async () => {
             endereco: input_editar_cliente_endereco.value.trim(),
             telefone: input_editar_cliente_telefone.value.trim()
         })
-    }) 
-    if(resposta_api.ok){
+    })
+    if (resposta_api.ok) {
         const resposta_json = await resposta_api.json()
         atualiza_tabela()
         moda_editar_cliente_content.style.display = "flex"
@@ -437,7 +448,7 @@ button_salva_edicao_modal.addEventListener("click", async () => {
         button_voltar_modal_editar.style.display = "flex"
         document.querySelector("#icone_loading_editar").style.display = "none"
         return mostrarAlerta(resposta_json.mensagem)
-    }else{
+    } else {
         const resposta_json = await resposta_api.json()
         moda_editar_cliente_content.style.display = "flex"
         h2_editar_cliente.style.display = "flex"
@@ -455,21 +466,21 @@ button_excloi_cliente_modal.addEventListener("click", async () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
         }
-    }) 
+    })
     const resposta_api_os = await fetch(`http://localhost:3030/api/ordens?id_cliente=${id_cliente_editar}`, {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
         }
-    }) 
-    if(resposta_api.ok && resposta_api_os.ok){
+    })
+    if (resposta_api.ok && resposta_api_os.ok) {
         const resposta_json = await resposta_api.json()
         atualiza_tabela()
         moda_excluir_cliente.style.display = "none"
         id_cliente_editar = undefined
         return mostrarAlerta(resposta_json.mensagem)
-    }else{
+    } else {
         const resposta_json = await resposta_api.json()
         id_cliente_editar = undefined
         moda_excluir_cliente.style.display = "none"
@@ -478,33 +489,33 @@ button_excloi_cliente_modal.addEventListener("click", async () => {
 })
 
 function abrirPdfParaImpressao(pdfBase64) {
-  const byteCharacters = atob(pdfBase64);
-  const byteNumbers = new Array(byteCharacters.length);
-  for (let i = 0; i < byteCharacters.length; i++) {
-    byteNumbers[i] = byteCharacters.charCodeAt(i);
-  }
-  const byteArray = new Uint8Array(byteNumbers);
+    const byteCharacters = atob(pdfBase64);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
 
-  const blob = new Blob([byteArray], { type: 'application/pdf' });
-  const blobUrl = URL.createObjectURL(blob);
+    const blob = new Blob([byteArray], { type: 'application/pdf' });
+    const blobUrl = URL.createObjectURL(blob);
 
-  const printWindow = window.open(blobUrl);
-  if (!printWindow) {
-    alert('Bloqueador de popups impediu a abertura da janela de impressão.');
-    return;
-  }
-  printWindow.onload = () => {
-    printWindow.focus();
-    printWindow.print();
-  };
+    const printWindow = window.open(blobUrl);
+    if (!printWindow) {
+        alert('Bloqueador de popups impediu a abertura da janela de impressão.');
+        return;
+    }
+    printWindow.onload = () => {
+        printWindow.focus();
+        printWindow.print();
+    };
 }
 
 
 const cadastrar_os_button = document.querySelector("#cadastrar_os_button")
 cadastrar_os_button.addEventListener("click", async () => {
-    if(!input_cadastrar_os_marca.value) return mostrarAlerta("Preencha a marca do equipamento")
-    if(!input_cadastrar_os_modelo.value) return mostrarAlerta("Preencha o modelo do equipamento")
-    if(!input_cadastrar_os_cor.value) return mostrarAlerta("Preencha a cor do equipamento")
+    if (!input_cadastrar_os_marca.value) return mostrarAlerta("Preencha a marca do equipamento")
+    if (!input_cadastrar_os_modelo.value) return mostrarAlerta("Preencha o modelo do equipamento")
+    if (!input_cadastrar_os_cor.value) return mostrarAlerta("Preencha a cor do equipamento")
     const icone_loading = document.querySelector("#icone_loading_os")
     const modal_criar_os_conteudo = document.querySelector(".modal-criar-os-content")
     modal_criar_os_conteudo.style.display = "none"
@@ -528,16 +539,16 @@ cadastrar_os_button.addEventListener("click", async () => {
             marca: input_cadastrar_os_marca.value.trim(),
             modelo: input_cadastrar_os_modelo.value.trim(),
             cor: input_cadastrar_os_cor.value.trim(),
-            observacoes: input_cadastrar_os_observacoes.value.trim() 
+            observacoes: input_cadastrar_os_observacoes.value.trim()
         })
     })
-    if(equipamento.ok){
+    if (equipamento.ok) {
         equipamento = await equipamento.json()
         let os = await fetch("http://localhost:3030/api/ordens", {
             method: "POST",
             headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
             },
             body: JSON.stringify({
                 equipamento_id: equipamento._id,
@@ -553,7 +564,7 @@ cadastrar_os_button.addEventListener("click", async () => {
                 marca_equipamento: input_cadastrar_os_marca.value
             })
         })
-        if(os.ok){
+        if (os.ok) {
             os = await os.json()
             modal_criar_os_conteudo.style.display = "flex"
             icone_loading.style.display = "none"
@@ -566,13 +577,13 @@ cadastrar_os_button.addEventListener("click", async () => {
             input_cadastrar_os_orcamento.value = ""
             input_cadastrar_os_diagnostico.value = ""
             input_cadastrar_os_observacoes.value = ""
-        }else{
+        } else {
             os = await os.json()
             modal_criar_os_conteudo.style.display = "flex"
             icone_loading.style.display = "none"
             mostrarAlerta(os.mensagem)
         }
-    }else{
+    } else {
         equipamento = await equipamento.json()
         return mostrarAlerta(equipamento.mensagem)
     }
