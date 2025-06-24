@@ -22,7 +22,7 @@ router.post("/usuarios", UserControllers.create);
 router.get("/usuarios/procurar", UserControllers.procurar);
 router.get("/usuarios", verificaTokenAdmin, UserControllers.listar);
 router.put("/usuarios", UserControllers.editar);
-router.delete("/usuarios/:id", verificaTokenAdmin, UserControllers.delete);
+router.delete("/usuarios", verificaTokenAdmin, UserControllers.delete);
 
 // Rotas dos Clientes (usuário comum pode acessar)
 router.post("/clientes", verificaTokenUser, ClientesControllers.create);

@@ -138,6 +138,8 @@ button_gera_relatorio_personalizado.addEventListener("click", async () => {
     if (input_inicio.value == "" || input_final.value == "") return mostrarAlerta("Preencha as data para gerar o relatório");
     const data_inicial = new Date(input_inicio.value)
     const data_final = new Date(input_final.value)
+    data_inicial.setDate(data_inicial.getDate() +1)
+    data_final.setDate(data_final.getDate() +1)
     if(data_final > data_inicial) return mostrarAlerta("Incoerência nas datas");
     icone_load_modal.style.display = "block"
     modal_relatorio_personalizado_conteudo.style.display = "none"

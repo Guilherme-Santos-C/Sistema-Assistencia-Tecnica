@@ -1,29 +1,17 @@
 import tokens from "./tokens.js"
 import mostrarAlerta from "./mostrarAlerta.js"
 
-const div_senha_input = document.querySelector(".container_input_pesquisa")
-const input_cliente = document.querySelector("#pesquisa_input")
-input_cliente.addEventListener("focus", () => {
-    div_senha_input.classList.add("focus")
-})
-input_cliente.addEventListener("blur", () => {
-    div_senha_input.classList.remove("focus")
-})
-
-if (!await tokens.logado()) {
-    window.location.replace("http://localhost:3030")
-}
+// if (!await tokens.logado()) {
+//     window.location.replace("http://localhost:3030")
+// }
 
 // Redirecionamento dos botões da barra lateral
 const buttons_bar = document.querySelectorAll(".buttons-left-bar")
 buttons_bar[0].addEventListener("click", () => {
-    window.location.href = "http://localhost:3030/html/painelUsuario.html"
+    window.location.href = "http://localhost:3030/html/painelAdmin.html"
 })
 buttons_bar[1].addEventListener("click", () => {
-    window.location.href = "http://localhost:3030/html/painelOrdemServico.html"
-})
-buttons_bar[2].addEventListener("click", () => {
-    window.location.href = "http://localhost:3030/html/painelRelatorio.html"
+    window.location.href = "http://localhost:3030/html/painelTrocarSenhaAdmin.html"
 })
 
 // Modal - Logout
@@ -40,10 +28,15 @@ button_sair_modal.addEventListener("click", () => {
     window.location.replace("http://localhost:3030")
 })
 
-// Variavel para ser acessada na requisição de editar o cliente quando abre o modal o valor dela é o id do cliente quando fecha volta a undefined
-let id_cliente_editar;
+// tabela
+const tabela_conteudos = document.querySelectorAll(".tabela")
+const icone_load_tabela = document.querySelector("#icone_load_tabela")
 
 let atualiza_tabela = async () => {
+    tabela_conteudos.forEach(e => {
+        e.style.display = "none"
+    });
+    icone_load_tabela.style.display = "block"
     let resposta_api = await fetch("http://localhost:3030/api/usuarios", {
         method: "GET",
         headers: {
@@ -77,10 +70,14 @@ let atualiza_tabela = async () => {
             `
             tabela.append(div_linha)
         });
-        const button_excluir_cliente_modal = document.querySelectorAll(".excluir_cliente_button")
+        const button_excluir_cliente_modal = document.querySelectorAll(".excluir_usuarios_button")
         button_excluir_cliente_modal.forEach((e) => {
             e.onclick = async () => {
-                let resposta_api = await fetch(`http://localhost:3030/api/usuarios?id=${e._id}`, {
+                tabela_conteudos.forEach(e => {
+                    e.style.display = "none"
+                });
+                icone_load_tabela.style.display = "block"
+                let resposta_api = await fetch(`http://localhost:3030/api/usuarios?id=${e.id}`, {
                     method: "DELETE",
                     headers: {
                         'Content-Type': 'application/json',
@@ -89,6 +86,7 @@ let atualiza_tabela = async () => {
                 })
                 if (resposta_api.ok) {
                     let usuario_json = await resposta_api.json()
+                    atualiza_tabela()
                     return mostrarAlerta(usuario_json.mensagem)
                 } else {
                     let usuario_json = await resposta_api.json()
@@ -96,6 +94,13 @@ let atualiza_tabela = async () => {
                 }
             }
         })
+        tabela_conteudos[0].style.display = "grid"
+        tabela_conteudos[1].style.display = "block"
+        tabela_conteudos[2].style.display = "flex"
+        icone_load_tabela.style.display = "none"
+    } else {
+        resposta_api = await resposta_api.json()
+        console.log(resposta_api)
     }
 }
 

@@ -25,11 +25,16 @@ const verificaTokenUser = (req, res, next) => {
 
 
 const verificaTokenAdmin = (req, res, next) => {
-    const secret = process.env.JWT_SECRET
-    const token = req.header("Authorization")
-    if(!token) return res.status(401).json({mensagem: "Acesso negado, faça login novamente"})
+    const secret = "lakshdj80b@dpks5ao";
+    const authHeader = req.header("Authorization");
+    if (!authHeader) {
+        return res.status(401).json({ mensagem: "Acesso negado, faça login novamente" });
+    }
+    const token = authHeader.split(" ")[1]; // Pega só o token, sem o "Bearer"
+    if (!token) {
+        return res.status(401).json({ mensagem: "Acesso negado, faça login novamente" });
+    }
     try {
-        token = token.split(" ")[1]
         const decodificado = jwt.verify(token, secret)
         if(decodificado.role !== "admin") return res.status(403).json({mensagem: "Acesso negado, faça login novamente"})
         next()

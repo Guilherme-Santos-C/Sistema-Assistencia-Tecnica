@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="../css/painelAdmin.css">
     <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/painelTrocarSenhaAdmin.css">
     <link rel="shortcut icon" type="image/jpg" href="../images/e_grande_icone.png" />
 </head>
 
@@ -27,9 +27,9 @@
             <img src="../images/Logo.svg" alt="logo icone" class="logo">
             <div class="left-side-bar-linha"></div>
             <div class="container-buttons-left-bar">
-                <button class="buttons-left-bar" id="bar-icone-clientes"><img src="../images/Clientes.svg"
+                <button class="buttons-left-bar"><img src="../images/Clientes.svg"
                         alt="icone de clientes"></button>
-                <button class="buttons-left-bar"><img src="../images/icone_cadeado.svg"
+                <button class="buttons-left-bar" id="bar-icone-cadeado"><img src="../images/icone_cadeado.svg"
                         alt="icone de checklist" class="icone_cadeado"></button>
             </div>
             <div class="left-side-bar-linha"></div>
@@ -37,32 +37,31 @@
         </div>
         <div class="main-content">
             <div class="up-side-bar">
-                <p>Usuários</p>
+                <p>Senha</p>
                 <p id="nome_admin">Admin</p>
             </div>
             <div class="down-side-content">
-                <img src="../images/loading.svg" style="width: 20%; display: none;" alt="Animação que representa o carregamento da página" id="icone_load_tabela">
-                <div class="container-topo-tabela tabela">
-                    <div class="campo_topo_id">
-                        <p>id</p>
-                    </div>
-                    <div class="campo_topo_nome">
-                        <p>Nome completo</p>
-                    </div>
-                    <div class="campo_topo_cpf">
-                        <p>Cpf</p>
-                    </div>
-                    <div class="campo_top_modificar">
-                        <p>Modificar</p>
+                <img src="../images/loading.svg" style="width: 20%; display: none;" alt="Animação que representa o carregamento da página" id="icone_load">
+                <div class="left-side-content content">
+                    <h1>Alterar senha<br> do administrador</h1>
+                    <div class="container-form">
+                        <div>
+                            <label for="senha_nova_admin">Nova senha</label>
+                            <input type="password" id="senha_nova_admin" placeholder="Digite a nova senha">
+                        </div>
+                        <div>
+                            <label for="confirma_senha_nova_admin">Confirme nova senha</label>
+                            <input type="password" id="confirma_senha_nova_admin" placeholder="Confirma a nova senha">
+                        </div>
+                        <button class="buttons-main-div" id="button-troca-senha">Trocar senha</button>
                     </div>
                 </div>
-                <div class="lista_tabela tabela"></div>
-                <div class="container-corpo-tabela tabela">
-                    <!-- Tabela, carregada com js-->
+                <div class="right-side-content content">
+                    <img src="../images/ilustração_homem.svg" alt="ilustração de um homem com uma planilha">
                 </div>
             </div>
         </div>
     </main>
-    <script type="module" src="../src/painelAdmin.js"></script>
+    <script type="module" src="../src/painelTrocarSenhaAdmin.js"></script>
 </body>
 </html>

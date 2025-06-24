@@ -24,6 +24,9 @@ const imprimir_pdf_relatorio = async (req, res) => {
   const inicio = new Date(dataInicial);
   const fim = new Date(dataFinal);
 
+  console.log(inicio)
+  console.log(fim)
+
 
   // Data formatada para melhor vizu
   const mes_inicio = (inicio.getMonth() + 1).toString().padStart(2, '0');

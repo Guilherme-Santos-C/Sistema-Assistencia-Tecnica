@@ -60,6 +60,7 @@ const redefinir_senha = async () => {
     });
     if (resposta.ok) {
         const User = await resposta.json()
+        console.log(User)
         let resposta_api = await fetch(`http://localhost:3030/api/usuarios?id=${User._id}&admin=${input_senha_admin_value}`, {
         method: "PUT",
         headers: {

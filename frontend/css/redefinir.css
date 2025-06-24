@@ -183,3 +183,6 @@ h1 span {
     transform: translate(-50%, -50%);
 }
 
+#senha_visivel_img { /* Olho da senha */
+    width: 7%;
+}

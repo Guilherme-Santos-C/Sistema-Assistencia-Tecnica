@@ -1,0 +1,226 @@
+body {
+    background-color: #EAE5FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    gap: 3vw;
+    height: 90vh;
+}
+
+.left-side-bar {
+    width: 5vw;
+    height: 90vh;
+    background-color: var(--color-white);
+    border-radius: 2rem;
+    min-width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0.5rem 2rem 0.5rem;
+}
+
+.left-side-bar img {
+    width: 54%;
+}
+
+.container-buttons-left-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.container-buttons-left-bar .buttons-left-bar {
+    height: 4.3rem;
+    min-width: 4.3rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--color-white);
+}
+
+.container-buttons-left-bar .buttons-left-bar img {
+    height: 20px;
+    width: 20px;
+}
+
+#imagem_relatorio_barra {
+    width: 22.5px;
+    height: 22.5px;
+}
+
+#icone-logout {
+    cursor: pointer;
+}
+
+.left-side-bar-linha {
+    width: 2%;
+    height: 30%;
+    background-color: #AFA7CA;
+}
+
+.main-content {
+    width: 85vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.up-side-bar {
+    height: 10vh;
+    width: 85vw;
+    background-color: var(--color-white);
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 7rem 1rem 7rem;
+    font-size: 2.3rem;
+    color: #AFA7CA;
+}
+
+.down-side-content {
+    height: 75vh;
+    width: 85vw;
+    background-color: var(--color-white);
+    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    padding: 4rem;
+}
+
+.center {
+    display: grid;
+    grid-template-columns: 1fr; 
+}
+
+.div-input-button-upbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 60%;
+}
+
+.div-input-button-upbar button {
+    border-radius: 1rem;
+    width: 60%;
+}
+
+.modal-excluir {
+    width: 40%;
+    height: 40%;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-excluir-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+    width: 70%;
+}
+
+.modal-excluir-content p {
+    font-size: 2.5rem;
+}
+
+.modal-excluir-content > div {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+
+.modal-excluir-content > div > button {
+    display: flex;
+    width: 70%;
+    font-size: 1.7rem;
+    border-radius: 1rem;
+}
+
+.modal-excluir-button-nao {
+    background-color: #FF5B5B;
+}
+
+.icone_cadeado {
+    width: 32px;
+    height: 32px;
+}
+
+#bar-icone-cadeado {
+    background-color: #EAE5FF;
+}
+
+.left-side-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 5rem;
+} 
+
+.left-side-content h1 {
+    font-size: 4.5rem;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.container-form  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 60%;
+}
+
+.container-form  div label {
+    font-size: 2rem;
+    width: fit-content;
+}
+
+.container-form  div input {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1.8px solid #EAE5FF;
+    font-size: 1.7rem;
+    background-color: #EAE5FF;
+    transition: 1s all;
+    width: 100%;
+}
+
+.container-form  div input:focus {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1.8px solid var(--color-secondary);
+    font-size: 1.7rem;
+    background-color: #F7F4FF;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.container-form button {
+    font-size: 2rem;
+}
+
+#button-troca-senha {
+    width: 40%;
+}

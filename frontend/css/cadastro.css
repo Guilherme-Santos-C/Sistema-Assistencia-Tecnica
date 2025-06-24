@@ -163,3 +163,7 @@ span {
     width: 36px;
     height: 36px;
 }
+
+#senha_visivel_img { /* Olho da senha */
+    width: 7%;
+}
