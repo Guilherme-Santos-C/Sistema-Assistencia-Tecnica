@@ -1,3 +1,4 @@
+console.log("Carregando... (0/2)")
 const path = require("path")
 const express = require("express");
 const conn_DB = require("./conn");
@@ -15,5 +16,5 @@ conn_DB()
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Carregando... (1/2)`);
 });
