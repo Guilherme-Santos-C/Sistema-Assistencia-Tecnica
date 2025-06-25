@@ -7,6 +7,7 @@ function conn_DB ( ) {
     .then(() => {
         console.log("Carregando... (2/2)")
         console.log(`Aplicativo rodando`);
+        console.log(`http://localhost:3030`);
     })
     .catch((error) => {
         console.log(error)
