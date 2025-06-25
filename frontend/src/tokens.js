@@ -29,6 +29,19 @@ const tokenController = {
         })
         if(resposta_api.ok) return true
         return false
+    },
+    async logado_admin () {
+        const token = localStorage.getItem("token") || sessionStorage.getItem("token")
+        if(token == null) return false
+        const resposta_api = await fetch("http://localhost:3030/api/verificaTokenAdmin", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+        })
+        if(resposta_api.ok) return true
+        return false
     }
 }
 

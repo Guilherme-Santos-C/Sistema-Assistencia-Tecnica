@@ -1,4 +1,3 @@
-console.log("Carregando... (0/2)")
 const path = require("path")
 const express = require("express");
 const conn_DB = require("./conn");

@@ -1,9 +1,9 @@
 import tokens from "./tokens.js"
 import mostrarAlerta from "./mostrarAlerta.js"
 
-// if (!await tokens.logado()) {
-//     window.location.replace("http://localhost:3030")
-// }
+if (!await tokens.logado_admin()) {
+    window.location.replace("http://localhost:3030")
+}
 
 // Redirecionamento dos botões da barra lateral
 const buttons_bar = document.querySelectorAll(".buttons-left-bar")

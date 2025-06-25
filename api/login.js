@@ -19,9 +19,7 @@ const login = async (req, res) => {
             }
             else {
                 try {
-                    console.log(req.body.password, Admin.password)
                     const verificacao = await bcrypt.compare(req.body.password, Admin.password)
-                    console.log(verificacao)
                     if (verificacao) {
                         const token = jwt.sign(
                             { id: Admin._id, nome: "Admin", role: "admin" },
